@@ -124,4 +124,38 @@
     }
 }
 
+- (void)retreiveProfile {
+    if (self.currentProfile == nil) {
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        NSString* profileString = [defaults objectForKey:@"SelectedProfile"];
+        
+       if (profileString) {
+            NSEntityDescription *entityDescription = [NSEntityDescription
+                                                      entityForName:@"Profile" inManagedObjectContext:self.managedObjectContext];
+            NSFetchRequest *request = [[NSFetchRequest alloc] init];
+            [request setEntity:entityDescription];
+            
+            // Set example predicate and sort orderings...
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                                      @"userName == %@", profileString];
+            [request setPredicate:predicate];
+            
+            NSError *error;
+            NSArray *array = [self.managedObjectContext executeFetchRequest:request error:&error];
+            if (array) {
+                self.currentProfile = [array firstObject];
+            }
+        }
+    }
+}
+
+- (void)saveProfile {
+    
+    if (self.currentProfile) {
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:self.currentProfile.userName forKey:@"SelectedProfile"];
+        [defaults synchronize];
+    }
+}
+
 @end

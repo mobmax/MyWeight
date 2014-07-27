@@ -10,10 +10,21 @@
 		927320A019852BD600AB3E06 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9273209F19852BD600AB3E06 /* main.m */; };
 		927320A319852BD600AB3E06 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 927320A219852BD600AB3E06 /* AppDelegate.m */; };
 		927320A619852BD600AB3E06 /* MyWeight.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 927320A419852BD600AB3E06 /* MyWeight.xcdatamodeld */; };
-		927320A919852BD600AB3E06 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927320A819852BD600AB3E06 /* ViewController.m */; };
 		927320AC19852BD600AB3E06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 927320AA19852BD600AB3E06 /* Main.storyboard */; };
 		927320AE19852BD600AB3E06 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 927320AD19852BD600AB3E06 /* Images.xcassets */; };
 		927320BA19852BD600AB3E06 /* MyWeightTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 927320B919852BD600AB3E06 /* MyWeightTests.m */; };
+		927320C519852DF400AB3E06 /* people-setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 927320C319852DF400AB3E06 /* people-setting.png */; };
+		927320C619852DF400AB3E06 /* people-setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 927320C419852DF400AB3E06 /* people-setting@2x.png */; };
+		92D9896E19855D6600A75614 /* weight-scale.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D9896C19855D6600A75614 /* weight-scale.png */; };
+		92D9896F19855D6600A75614 /* weight-scale@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D9896D19855D6600A75614 /* weight-scale@2x.png */; };
+		92D9897219855F9500A75614 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D9897119855F9500A75614 /* CoreBluetooth.framework */; };
+		92D989751985723700A75614 /* MaxProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D989741985723700A75614 /* MaxProfileTableViewController.m */; };
+		92D9898B19857A4500A75614 /* Goal.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D9898A19857A4500A75614 /* Goal.m */; };
+		92D9898E19857A4500A75614 /* Measurment.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D9898D19857A4500A75614 /* Measurment.m */; };
+		92D9899119857A4500A75614 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D9899019857A4500A75614 /* Device.m */; };
+		92D9899419857A4500A75614 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D9899319857A4500A75614 /* Profile.m */; };
+		92D98997198580A900A75614 /* MaxProfileDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D98996198580A900A75614 /* MaxProfileDetailController.m */; };
+		92D9899A1985A42D00A75614 /* MaxDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D989991985A42D00A75614 /* MaxDashboardViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,13 +44,30 @@
 		927320A119852BD600AB3E06 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		927320A219852BD600AB3E06 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		927320A519852BD600AB3E06 /* MyWeight.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyWeight.xcdatamodel; sourceTree = "<group>"; };
-		927320A719852BD600AB3E06 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		927320A819852BD600AB3E06 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		927320AB19852BD600AB3E06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		927320AD19852BD600AB3E06 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		927320B319852BD600AB3E06 /* MyWeightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyWeightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		927320B819852BD600AB3E06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		927320B919852BD600AB3E06 /* MyWeightTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyWeightTests.m; sourceTree = "<group>"; };
+		927320C319852DF400AB3E06 /* people-setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "people-setting.png"; path = "MyWeight/people-setting.png"; sourceTree = "<group>"; };
+		927320C419852DF400AB3E06 /* people-setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "people-setting@2x.png"; path = "MyWeight/people-setting@2x.png"; sourceTree = "<group>"; };
+		92D9896C19855D6600A75614 /* weight-scale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "weight-scale.png"; path = "MyWeight/weight-scale.png"; sourceTree = "<group>"; };
+		92D9896D19855D6600A75614 /* weight-scale@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "weight-scale@2x.png"; path = "MyWeight/weight-scale@2x.png"; sourceTree = "<group>"; };
+		92D9897119855F9500A75614 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		92D989731985723700A75614 /* MaxProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaxProfileTableViewController.h; sourceTree = "<group>"; };
+		92D989741985723700A75614 /* MaxProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaxProfileTableViewController.m; sourceTree = "<group>"; };
+		92D9898919857A4500A75614 /* Goal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Goal.h; path = "MyWeight/Data Model/Goal.h"; sourceTree = "<group>"; };
+		92D9898A19857A4500A75614 /* Goal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Goal.m; path = "MyWeight/Data Model/Goal.m"; sourceTree = "<group>"; };
+		92D9898C19857A4500A75614 /* Measurment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Measurment.h; path = "MyWeight/Data Model/Measurment.h"; sourceTree = "<group>"; };
+		92D9898D19857A4500A75614 /* Measurment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Measurment.m; path = "MyWeight/Data Model/Measurment.m"; sourceTree = "<group>"; };
+		92D9898F19857A4500A75614 /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Device.h; path = "MyWeight/Data Model/Device.h"; sourceTree = "<group>"; };
+		92D9899019857A4500A75614 /* Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Device.m; path = "MyWeight/Data Model/Device.m"; sourceTree = "<group>"; };
+		92D9899219857A4500A75614 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Profile.h; path = "MyWeight/Data Model/Profile.h"; sourceTree = "<group>"; };
+		92D9899319857A4500A75614 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Profile.m; path = "MyWeight/Data Model/Profile.m"; sourceTree = "<group>"; };
+		92D98995198580A900A75614 /* MaxProfileDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaxProfileDetailController.h; sourceTree = "<group>"; };
+		92D98996198580A900A75614 /* MaxProfileDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaxProfileDetailController.m; sourceTree = "<group>"; };
+		92D989981985A42D00A75614 /* MaxDashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaxDashboardViewController.h; sourceTree = "<group>"; };
+		92D989991985A42D00A75614 /* MaxDashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaxDashboardViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92D9897219855F9500A75614 /* CoreBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +92,8 @@
 		9273209119852BD600AB3E06 = {
 			isa = PBXGroup;
 			children = (
+				92D989821985795100A75614 /* Data Model */,
+				92D9897019855F5200A75614 /* Images */,
 				9273209C19852BD600AB3E06 /* MyWeight */,
 				927320B619852BD600AB3E06 /* MyWeightTests */,
 				9273209B19852BD600AB3E06 /* Products */,
@@ -83,12 +114,15 @@
 			children = (
 				927320A119852BD600AB3E06 /* AppDelegate.h */,
 				927320A219852BD600AB3E06 /* AppDelegate.m */,
-				927320A719852BD600AB3E06 /* ViewController.h */,
-				927320A819852BD600AB3E06 /* ViewController.m */,
 				927320AA19852BD600AB3E06 /* Main.storyboard */,
 				927320AD19852BD600AB3E06 /* Images.xcassets */,
-				927320A419852BD600AB3E06 /* MyWeight.xcdatamodeld */,
 				9273209D19852BD600AB3E06 /* Supporting Files */,
+				92D989731985723700A75614 /* MaxProfileTableViewController.h */,
+				92D989741985723700A75614 /* MaxProfileTableViewController.m */,
+				92D98995198580A900A75614 /* MaxProfileDetailController.h */,
+				92D98996198580A900A75614 /* MaxProfileDetailController.m */,
+				92D989981985A42D00A75614 /* MaxDashboardViewController.h */,
+				92D989991985A42D00A75614 /* MaxDashboardViewController.m */,
 			);
 			path = MyWeight;
 			sourceTree = "<group>";
@@ -96,6 +130,7 @@
 		9273209D19852BD600AB3E06 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				92D9897119855F9500A75614 /* CoreBluetooth.framework */,
 				9273209E19852BD600AB3E06 /* Info.plist */,
 				9273209F19852BD600AB3E06 /* main.m */,
 			);
@@ -117,6 +152,33 @@
 				927320B819852BD600AB3E06 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		92D9897019855F5200A75614 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				927320C319852DF400AB3E06 /* people-setting.png */,
+				927320C419852DF400AB3E06 /* people-setting@2x.png */,
+				92D9896C19855D6600A75614 /* weight-scale.png */,
+				92D9896D19855D6600A75614 /* weight-scale@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		92D989821985795100A75614 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				92D9899219857A4500A75614 /* Profile.h */,
+				92D9899319857A4500A75614 /* Profile.m */,
+				92D9898F19857A4500A75614 /* Device.h */,
+				92D9899019857A4500A75614 /* Device.m */,
+				92D9898C19857A4500A75614 /* Measurment.h */,
+				92D9898D19857A4500A75614 /* Measurment.m */,
+				92D9898919857A4500A75614 /* Goal.h */,
+				92D9898A19857A4500A75614 /* Goal.m */,
+				927320A419852BD600AB3E06 /* MyWeight.xcdatamodeld */,
+			);
+			name = "Data Model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,6 +263,10 @@
 			files = (
 				927320AC19852BD600AB3E06 /* Main.storyboard in Resources */,
 				927320AE19852BD600AB3E06 /* Images.xcassets in Resources */,
+				92D9896E19855D6600A75614 /* weight-scale.png in Resources */,
+				92D9896F19855D6600A75614 /* weight-scale@2x.png in Resources */,
+				927320C619852DF400AB3E06 /* people-setting@2x.png in Resources */,
+				927320C519852DF400AB3E06 /* people-setting.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,9 +284,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92D9898B19857A4500A75614 /* Goal.m in Sources */,
+				92D989751985723700A75614 /* MaxProfileTableViewController.m in Sources */,
+				92D9898E19857A4500A75614 /* Measurment.m in Sources */,
 				927320A319852BD600AB3E06 /* AppDelegate.m in Sources */,
 				927320A619852BD600AB3E06 /* MyWeight.xcdatamodeld in Sources */,
-				927320A919852BD600AB3E06 /* ViewController.m in Sources */,
+				92D98997198580A900A75614 /* MaxProfileDetailController.m in Sources */,
+				92D9899419857A4500A75614 /* Profile.m in Sources */,
+				92D9899119857A4500A75614 /* Device.m in Sources */,
+				92D9899A1985A42D00A75614 /* MaxDashboardViewController.m in Sources */,
 				927320A019852BD600AB3E06 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,9 +408,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MyWeight/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -347,7 +422,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MyWeight/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -406,6 +483,7 @@
 				927320BF19852BD600AB3E06 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		927320C019852BD600AB3E06 /* Build configuration list for PBXNativeTarget "MyWeightTests" */ = {
 			isa = XCConfigurationList;
@@ -414,6 +492,7 @@
 				927320C219852BD600AB3E06 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
@@ -424,7 +503,8 @@
 				927320A519852BD600AB3E06 /* MyWeight.xcdatamodel */,
 			);
 			currentVersion = 927320A519852BD600AB3E06 /* MyWeight.xcdatamodel */;
-			path = MyWeight.xcdatamodeld;
+			name = MyWeight.xcdatamodeld;
+			path = MyWeight/MyWeight.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

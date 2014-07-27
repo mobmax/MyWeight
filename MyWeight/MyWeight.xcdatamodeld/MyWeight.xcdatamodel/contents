@@ -1,4 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6208.6" systemVersion="14A298i" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Device" representedClassName="Device" syncable="YES">
+        <attribute name="deviceID" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="deviceName" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Profile" inverseName="devices" inverseEntity="Profile" syncable="YES"/>
+    </entity>
+    <entity name="Goal" representedClassName="Goal" syncable="YES">
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="targetWeight" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Profile" inverseName="goals" inverseEntity="Profile" syncable="YES"/>
+    </entity>
+    <entity name="Measurment" representedClassName="Measurment" syncable="YES">
+        <attribute name="bone" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="fat" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="fromDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="kcal" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="muscule" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="visceralFat" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="water" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="weight" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Profile" inverseName="measurments" inverseEntity="Profile" syncable="YES"/>
+    </entity>
+    <entity name="Profile" representedClassName="Profile" syncable="YES">
+        <attribute name="age" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="gender" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="height" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="level" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="userName" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="devices" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Device" inverseName="profile" inverseEntity="Device" syncable="YES"/>
+        <relationship name="goals" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Goal" inverseName="profile" inverseEntity="Goal" syncable="YES"/>
+        <relationship name="measurments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Measurment" inverseName="profile" inverseEntity="Measurment" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Device" positionX="205" positionY="-72" width="128" height="103"/>
+        <element name="Profile" positionX="0" positionY="63" width="128" height="163"/>
+        <element name="Measurment" positionX="205" positionY="272" width="128" height="178"/>
+        <element name="Goal" positionX="205" positionY="98" width="128" height="118"/>
+    </elements>
 </model>
