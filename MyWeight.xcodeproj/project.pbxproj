@@ -1,0 +1,434 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		927320A019852BD600AB3E06 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9273209F19852BD600AB3E06 /* main.m */; };
+		927320A319852BD600AB3E06 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 927320A219852BD600AB3E06 /* AppDelegate.m */; };
+		927320A619852BD600AB3E06 /* MyWeight.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 927320A419852BD600AB3E06 /* MyWeight.xcdatamodeld */; };
+		927320A919852BD600AB3E06 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927320A819852BD600AB3E06 /* ViewController.m */; };
+		927320AC19852BD600AB3E06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 927320AA19852BD600AB3E06 /* Main.storyboard */; };
+		927320AE19852BD600AB3E06 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 927320AD19852BD600AB3E06 /* Images.xcassets */; };
+		927320BA19852BD600AB3E06 /* MyWeightTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 927320B919852BD600AB3E06 /* MyWeightTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		927320B419852BD600AB3E06 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9273209219852BD600AB3E06 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9273209919852BD600AB3E06;
+			remoteInfo = MyWeight;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9273209A19852BD600AB3E06 /* MyWeight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWeight.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9273209E19852BD600AB3E06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9273209F19852BD600AB3E06 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		927320A119852BD600AB3E06 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		927320A219852BD600AB3E06 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		927320A519852BD600AB3E06 /* MyWeight.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyWeight.xcdatamodel; sourceTree = "<group>"; };
+		927320A719852BD600AB3E06 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		927320A819852BD600AB3E06 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		927320AB19852BD600AB3E06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		927320AD19852BD600AB3E06 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		927320B319852BD600AB3E06 /* MyWeightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyWeightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		927320B819852BD600AB3E06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		927320B919852BD600AB3E06 /* MyWeightTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyWeightTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9273209719852BD600AB3E06 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		927320B019852BD600AB3E06 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9273209119852BD600AB3E06 = {
+			isa = PBXGroup;
+			children = (
+				9273209C19852BD600AB3E06 /* MyWeight */,
+				927320B619852BD600AB3E06 /* MyWeightTests */,
+				9273209B19852BD600AB3E06 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9273209B19852BD600AB3E06 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9273209A19852BD600AB3E06 /* MyWeight.app */,
+				927320B319852BD600AB3E06 /* MyWeightTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9273209C19852BD600AB3E06 /* MyWeight */ = {
+			isa = PBXGroup;
+			children = (
+				927320A119852BD600AB3E06 /* AppDelegate.h */,
+				927320A219852BD600AB3E06 /* AppDelegate.m */,
+				927320A719852BD600AB3E06 /* ViewController.h */,
+				927320A819852BD600AB3E06 /* ViewController.m */,
+				927320AA19852BD600AB3E06 /* Main.storyboard */,
+				927320AD19852BD600AB3E06 /* Images.xcassets */,
+				927320A419852BD600AB3E06 /* MyWeight.xcdatamodeld */,
+				9273209D19852BD600AB3E06 /* Supporting Files */,
+			);
+			path = MyWeight;
+			sourceTree = "<group>";
+		};
+		9273209D19852BD600AB3E06 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9273209E19852BD600AB3E06 /* Info.plist */,
+				9273209F19852BD600AB3E06 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		927320B619852BD600AB3E06 /* MyWeightTests */ = {
+			isa = PBXGroup;
+			children = (
+				927320B919852BD600AB3E06 /* MyWeightTests.m */,
+				927320B719852BD600AB3E06 /* Supporting Files */,
+			);
+			path = MyWeightTests;
+			sourceTree = "<group>";
+		};
+		927320B719852BD600AB3E06 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				927320B819852BD600AB3E06 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9273209919852BD600AB3E06 /* MyWeight */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 927320BD19852BD600AB3E06 /* Build configuration list for PBXNativeTarget "MyWeight" */;
+			buildPhases = (
+				9273209619852BD600AB3E06 /* Sources */,
+				9273209719852BD600AB3E06 /* Frameworks */,
+				9273209819852BD600AB3E06 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MyWeight;
+			productName = MyWeight;
+			productReference = 9273209A19852BD600AB3E06 /* MyWeight.app */;
+			productType = "com.apple.product-type.application";
+		};
+		927320B219852BD600AB3E06 /* MyWeightTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 927320C019852BD600AB3E06 /* Build configuration list for PBXNativeTarget "MyWeightTests" */;
+			buildPhases = (
+				927320AF19852BD600AB3E06 /* Sources */,
+				927320B019852BD600AB3E06 /* Frameworks */,
+				927320B119852BD600AB3E06 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				927320B519852BD600AB3E06 /* PBXTargetDependency */,
+			);
+			name = MyWeightTests;
+			productName = MyWeightTests;
+			productReference = 927320B319852BD600AB3E06 /* MyWeightTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9273209219852BD600AB3E06 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Maxim Donchenko";
+				TargetAttributes = {
+					9273209919852BD600AB3E06 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					927320B219852BD600AB3E06 = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = 9273209919852BD600AB3E06;
+					};
+				};
+			};
+			buildConfigurationList = 9273209519852BD600AB3E06 /* Build configuration list for PBXProject "MyWeight" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9273209119852BD600AB3E06;
+			productRefGroup = 9273209B19852BD600AB3E06 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9273209919852BD600AB3E06 /* MyWeight */,
+				927320B219852BD600AB3E06 /* MyWeightTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9273209819852BD600AB3E06 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				927320AC19852BD600AB3E06 /* Main.storyboard in Resources */,
+				927320AE19852BD600AB3E06 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		927320B119852BD600AB3E06 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9273209619852BD600AB3E06 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				927320A319852BD600AB3E06 /* AppDelegate.m in Sources */,
+				927320A619852BD600AB3E06 /* MyWeight.xcdatamodeld in Sources */,
+				927320A919852BD600AB3E06 /* ViewController.m in Sources */,
+				927320A019852BD600AB3E06 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		927320AF19852BD600AB3E06 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				927320BA19852BD600AB3E06 /* MyWeightTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		927320B519852BD600AB3E06 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9273209919852BD600AB3E06 /* MyWeight */;
+			targetProxy = 927320B419852BD600AB3E06 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		927320AA19852BD600AB3E06 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				927320AB19852BD600AB3E06 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		927320BB19852BD600AB3E06 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		927320BC19852BD600AB3E06 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		927320BE19852BD600AB3E06 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = MyWeight/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		927320BF19852BD600AB3E06 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = MyWeight/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		927320C119852BD600AB3E06 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MyWeight.app/MyWeight";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MyWeightTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Debug;
+		};
+		927320C219852BD600AB3E06 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MyWeight.app/MyWeight";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MyWeightTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9273209519852BD600AB3E06 /* Build configuration list for PBXProject "MyWeight" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				927320BB19852BD600AB3E06 /* Debug */,
+				927320BC19852BD600AB3E06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		927320BD19852BD600AB3E06 /* Build configuration list for PBXNativeTarget "MyWeight" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				927320BE19852BD600AB3E06 /* Debug */,
+				927320BF19852BD600AB3E06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		927320C019852BD600AB3E06 /* Build configuration list for PBXNativeTarget "MyWeightTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				927320C119852BD600AB3E06 /* Debug */,
+				927320C219852BD600AB3E06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		927320A419852BD600AB3E06 /* MyWeight.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				927320A519852BD600AB3E06 /* MyWeight.xcdatamodel */,
+			);
+			currentVersion = 927320A519852BD600AB3E06 /* MyWeight.xcdatamodel */;
+			path = MyWeight.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 9273209219852BD600AB3E06 /* Project object */;
+}
