@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vdr-OX-Alv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Vdr-OX-Alv">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Profiles-->
+        <!--Max Profile Table View Controller - Profiles-->
         <scene sceneID="bvp-hn-EG3">
             <objects>
                 <tableViewController id="b0a-ya-kgK" customClass="MaxProfileTableViewController" sceneMemberID="viewController">
@@ -14,11 +14,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="profileCell" textLabel="Jdd-Oy-Dpd" style="IBUITableViewCellStyleDefault" id="GnK-o5-Tvu">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GnK-o5-Tvu" id="3yu-Od-3QP">
+                                    <rect key="frame" x="0.0" y="0.0" width="253" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="User Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jdd-Oy-Dpd">
+                                            <rect key="frame" x="15" y="0.0" width="238" height="43"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -27,7 +30,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="LGq-U1-AsN" kind="show" identifier="showProfile" trigger="accessoryAction" id="75b-Ce-NbZ"/>
+                                    <segue destination="LGq-U1-AsN" kind="push" identifier="showProfile" trigger="accessoryAction" id="75b-Ce-NbZ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -48,7 +51,7 @@
             </objects>
             <point key="canvasLocation" x="1161" y="1085"/>
         </scene>
-        <!--Profile-->
+        <!--Max Profile Detail Controller - Profile-->
         <scene sceneID="B9u-8K-RDy">
             <objects>
                 <tableViewController storyboardIdentifier="profileDetailPage" id="LGq-U1-AsN" customClass="MaxProfileDetailController" sceneMemberID="viewController">
@@ -60,12 +63,14 @@
                             <tableViewSection id="VR4-rU-Iei">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="nameCell" id="wd1-JP-Zti">
+                                        <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wd1-JP-Zti" id="jV2-LP-AMD">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1H5-fM-xOy">
-                                                    <rect key="frame" x="15" y="11" width="46" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1H5-fM-xOy">
+                                                    <rect key="frame" x="15" y="0.0" width="46" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="46" id="2bB-E5-4um"/>
                                                     </constraints>
@@ -73,8 +78,8 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your name" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ARC-lg-W69">
-                                                    <rect key="frame" x="108" y="7" width="197" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your name" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ARC-lg-W69">
+                                                    <rect key="frame" x="108" y="0.0" width="197" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                 </textField>
@@ -115,10 +120,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Vdr-OX-Alv" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
-                        <size key="portraitSize" width="320" height="568"/>
-                        <size key="landscapeSize" width="568" height="320"/>
-                    </simulatedScreenMetrics>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="z7p-WM-5bS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -132,7 +134,7 @@
             </objects>
             <point key="canvasLocation" x="276" y="1085"/>
         </scene>
-        <!--User Name-->
+        <!--Max Dashboard View Controller - User Name-->
         <scene sceneID="cBW-wl-9bE">
             <objects>
                 <tableViewController id="Mg3-Ar-ROp" customClass="MaxDashboardViewController" sceneMemberID="viewController">
@@ -144,20 +146,26 @@
                             <tableViewSection id="ndZ-8N-ZQ4">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="bGn-ep-Jco">
+                                        <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bGn-ep-Jco" id="0Fs-Em-Yb2">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="AFt-UU-4AW">
+                                        <rect key="frame" x="0.0" y="108" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AFt-UU-4AW" id="fHF-2k-9CJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="SYI-OS-cta">
+                                        <rect key="frame" x="0.0" y="152" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SYI-OS-cta" id="zSv-CI-7LL">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -172,7 +180,7 @@
                     <navigationItem key="navigationItem" title="User Name" id="7CF-7j-CmR">
                         <barButtonItem key="rightBarButtonItem" image="people-setting.png" id="0F1-c5-Kds">
                             <connections>
-                                <segue destination="b0a-ya-kgK" kind="show" id="bXa-7c-8ZG"/>
+                                <segue destination="b0a-ya-kgK" kind="push" id="bXa-7c-8ZG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -186,4 +194,9 @@
         <image name="people-setting.png" width="30" height="30"/>
         <image name="weight-scale.png" width="29" height="30"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
 </document>

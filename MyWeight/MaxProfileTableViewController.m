@@ -12,7 +12,9 @@
 #import "MaxDashboardViewController.h"
 #import "Profile.h"
 
-@interface MaxProfileTableViewController ()
+@interface MaxProfileTableViewController () {
+    BOOL _ignoreChanges;
+}
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
@@ -33,6 +35,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
+    _ignoreChanges = NO;
     [self fetch];   // start fetching profiles from our data store
 }
 
@@ -48,11 +51,12 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    if ([self.fetchedResultsController.managedObjectContext hasChanges]) {
+    if (!_ignoreChanges && [self.fetchedResultsController.managedObjectContext hasChanges]) {
         NSError *error = nil;
         BOOL success = [self.fetchedResultsController.managedObjectContext save:&error];
         NSAssert2(success, @"Unhandled error performing save at MaxProfileTableViewController.m, line %d: %@", __LINE__, [error localizedDescription]);
     }
+    _ignoreChanges = NO;
 }
 
 #pragma mark - Table view data source
@@ -119,21 +123,6 @@
 }
 
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -142,14 +131,19 @@
     // Pass the selected object to the new view controller.
     
     MaxProfileDetailController *detailVC = [segue destinationViewController];
-    detailVC.profile = [self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:sender]];
+    if ([sender isKindOfClass:[Profile class]]) {
+        detailVC.profile = sender;
+        _ignoreChanges = YES;
+    } else {
+        detailVC.profile = [self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:sender]];
+    }
 }
 
 #pragma mark - Internal
 
 - (IBAction)addNewProfile:(id)sender {
     Profile* profile = [NSEntityDescription insertNewObjectForEntityForName:@"Profile" inManagedObjectContext:self.fetchedResultsController.managedObjectContext];
-    profile.userName = @"New User";
+    [self performSegueWithIdentifier:@"showProfile" sender:profile];
 }
 
 - (NSFetchedResultsController *)fetchedResultsController {
