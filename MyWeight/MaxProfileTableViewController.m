@@ -59,6 +59,12 @@
     _ignoreChanges = NO;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.tableView reloadData];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)table {
@@ -142,8 +148,7 @@
 #pragma mark - Internal
 
 - (IBAction)addNewProfile:(id)sender {
-    Profile* profile = [NSEntityDescription insertNewObjectForEntityForName:@"Profile" inManagedObjectContext:self.fetchedResultsController.managedObjectContext];
-    [self performSegueWithIdentifier:@"showProfile" sender:profile];
+    [NSEntityDescription insertNewObjectForEntityForName:@"Profile" inManagedObjectContext:self.fetchedResultsController.managedObjectContext];
 }
 
 - (NSFetchedResultsController *)fetchedResultsController {
@@ -185,8 +190,12 @@
     switch(type) {
             
         case NSFetchedResultsChangeInsert:
+        {
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            Profile *profile = [controller objectAtIndexPath:newIndexPath];
+            [self performSegueWithIdentifier:@"showProfile" sender:profile];
             break;
+        }
             
         case NSFetchedResultsChangeDelete:
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
