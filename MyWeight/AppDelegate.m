@@ -10,6 +10,11 @@
 
 @interface AppDelegate ()
 
+@property (strong, nonatomic) CBPeripheral *testPeripheral;
+
+- (void)getWeight:(NSInteger)profileNum gender:(NSInteger)gender level:(NSInteger)level Height:(NSInteger)height Age:(NSInteger)age unit:(NSInteger)unit;
+- (void)shutdown;
+
 @end
 
 @implementation AppDelegate
@@ -106,6 +111,34 @@
    return [self.manager retrieveConnectedPeripheralsWithServices:[NSArray arrayWithObject:[CBUUID UUIDWithString:@"FFF0"]]];
 }
 
+- (void)doMeasurment:(CBPeripheral *)peripheral {
+    self.testPeripheral = peripheral;
+    [self.manager connectPeripheral:self.testPeripheral options:nil];
+}
+
+- (void)getWeight:(NSInteger)profileNum gender:(NSInteger)gender level:(NSInteger)level Height:(NSInteger)height Age:(NSInteger)age unit:(NSInteger)unit {
+    // = {0xFE, 0x03, 0x01, 0x00, 0xAA, 0x19, 0x01, 0xB0}
+    char dataToSend[8] = {0};
+    
+    dataToSend[0] = 0xFE;
+    dataToSend[1] = profileNum;
+    dataToSend[2] = gender;
+    dataToSend[3] = level;
+    dataToSend[4] = height;
+    dataToSend[5] = age;
+    dataToSend[6] = unit;
+    dataToSend[7] = dataToSend[1] ^ dataToSend[2] ^ dataToSend[3] ^ dataToSend[4] ^ dataToSend[5] ^ dataToSend[6];
+    [self.testPeripheral writeValue:[NSData dataWithBytes:dataToSend length:sizeof(dataToSend)] forCharacteristic:self.measurmentControlChar type:CBCharacteristicWriteWithResponse];
+    
+}
+
+- (void)shutdown {
+    char dataToSend[] = {0xFD, 0x35, 0, 0, 0, 0, 0, 0x35};
+    
+    [self.testPeripheral writeValue:[NSData dataWithBytes:dataToSend length:sizeof(dataToSend)] forCharacteristic:self.measurmentControlChar type:CBCharacteristicWriteWithoutResponse];
+    
+}
+
 
 #pragma mark - CBManagerDelegate methods
 /*
@@ -127,8 +160,168 @@
     if (self.uiDelegate) {
         [self.uiDelegate performSelector:@selector(didDiscoveredDevice:) withObject:peripheral];
     }
+
+    [self.manager retrievePeripheralsWithIdentifiers:@[peripheral.identifier]];
 }
 
+/*
+ Invoked when the central manager retrieves the list of known peripherals.
+ Automatically connect to first known peripheral
+ */
+- (void)centralManager:(CBCentralManager *)central didRetrievePeripherals:(NSArray *)peripherals
+{
+    NSLog(@"Retrieved peripheral: %lu - %@", [peripherals count], peripherals);
+    
+    [self stopScan];
+    
+    /* If there are any known devices, automatically connect to it.*/
+    if([peripherals count] >=1)
+    {
+        self.testPeripheral = [peripherals objectAtIndex:0];
+        [self.manager connectPeripheral:self.testPeripheral options:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:CBConnectPeripheralOptionNotifyOnDisconnectionKey]];
+    }
+}
+
+
+- (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
+{
+    NSLog(@"Did connect to peripheral: %@", peripheral);
+    
+    self.testPeripheral = peripheral;
+    [self.testPeripheral setDelegate:self];
+    [self.testPeripheral discoverServices:nil];
+}
+
+- (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
+{
+    NSLog(@"Did Disconnect to peripheral: %@ with error = %@", peripheral, [error localizedDescription]);
+    [self.testPeripheral setDelegate:nil];
+    self.testPeripheral = nil;
+    [self startScan];
+
+}
+
+- (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
+{
+    NSLog(@"Fail to connect to peripheral: %@ with error = %@", peripheral, [error localizedDescription]);
+    [self.testPeripheral setDelegate:nil];
+    self.testPeripheral = nil;
+}
+
+#pragma mark - CBPeripheralDelegate methods
+/*
+ Invoked upon completion of a -[discoverServices:] request.
+ */
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
+{
+    if (error)
+    {
+        NSLog(@"Discovered services for %@ with error: %@", peripheral.name, [error localizedDescription]);
+        return;
+    }
+    for (CBService * service in peripheral.services)
+    {
+        NSLog(@"Service found with UUID: %@", service.UUID);
+        
+        if([service.UUID isEqual:[CBUUID UUIDWithString:@"FFF0"]])
+        {
+            /* Thermometer Service - discover termperature measurement, intermediate temperature measturement and measurement interval characteristics */
+            [peripheral discoverCharacteristics:[NSArray arrayWithObjects:[CBUUID UUIDWithString:@"FFF1"], [CBUUID UUIDWithString:@"FFF4"], nil] forService:service];
+        }
+    }
+}
+
+/*
+ Invoked upon completion of a -[discoverCharacteristics:forService:] request.
+ */
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
+{
+    if (error)
+    {
+        NSLog(@"Discovered characteristics for %@ with error: %@", service.UUID, [error localizedDescription]);
+        return;
+    }
+    
+    if([service.UUID isEqual:[CBUUID UUIDWithString:@"FFF0"]])
+    {
+        for (CBCharacteristic * characteristic in service.characteristics)
+        {
+            NSLog(@"Serviсe %@ characteristic %@ found", service.UUID, characteristic.UUID);
+            
+            /* Set indication on temperature measurement */
+            if([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"FFF1"]])
+            {
+                self.measurmentControlChar = characteristic;
+                //                [peripheral setNotifyValue:YES forCharacteristic:characteristic];
+                
+                //                [peripheral readValueForCharacteristic:characteristic];
+                
+            }
+            /* Set notification on intermediate temperature measurement */
+            if([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"FFF4"]])
+            {
+                NSLog(@"Subscribe for notification for serviсe %@ characteristic %@", service.UUID, characteristic.UUID);
+                self.weightMeasurementChar = characteristic;
+                [peripheral setNotifyValue:YES forCharacteristic:characteristic];
+                //                [peripheral readValueForCharacteristic:characteristic];
+                
+            }
+        }
+    }
+}
+
+/*
+ Invoked upon completion of a -[readValueForCharacteristic:] request or on the reception of a notification/indication.
+ */
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
+{
+    if (error)
+    {
+        NSLog(@"Error updating value for characteristic %@ error: %@", characteristic.UUID, [error localizedDescription]);
+        return;
+    } else {
+        NSLog(@"Characteristic %@ value %@", characteristic.UUID, characteristic.value);
+        
+        if([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"FFF4"]])
+        {
+            NSLog(@"Got result");
+            
+            MeasurmentResult *result = [MeasurmentResult resultWithData:characteristic.value];
+            if ([self.uiDelegate respondsToSelector:@selector(measurmentResut:)]) {
+                [self.uiDelegate performSelector:@selector(measurmentResut:) withObject:result];
+            }
+            [self shutdown];
+            [self startScan];
+        }
+    }
+}
+
+/*
+ Invoked upon completion of a -[writeValue:forCharacteristic:] request.
+ */
+- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
+{
+    if (error)
+    {
+        NSLog(@"Error writing value for characteristic %@ error: %@", characteristic.UUID, [error localizedDescription]);
+        return;
+    }
+}
+
+/*
+ Invoked upon completion of a -[setNotifyValue:forCharacteristic:] request.
+ */
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
+{
+    if (error)
+    {
+        NSLog(@"Error updating notification state for characteristic %@ error: %@", characteristic.UUID, [error localizedDescription]);
+        return;
+    }
+    
+    [self getWeight:0 gender:[self.currentProfile.gender intValue]  level:[self.currentProfile.level intValue] Height:[self.currentProfile.height intValue] Age:[self.currentProfile.age intValue] unit:1];
+    NSLog(@"Updated notification state for characteristic %@ (newState:%@)", characteristic.UUID, [characteristic isNotifying] ? @"Notifying" : @"Not Notifying");
+}
 
 
 #pragma mark - Core Data stack

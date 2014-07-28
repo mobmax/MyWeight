@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
-@interface MaxDashboardViewController : UITableViewController
+@interface MaxDashboardViewController : UITableViewController <BTDeviceProtocol>
+
+@property (weak, nonatomic) IBOutlet UILabel* resultLabel;
 
 @end

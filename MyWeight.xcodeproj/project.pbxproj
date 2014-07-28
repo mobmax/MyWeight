@@ -15,6 +15,7 @@
 		927320BA19852BD600AB3E06 /* MyWeightTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 927320B919852BD600AB3E06 /* MyWeightTests.m */; };
 		927320C519852DF400AB3E06 /* people-setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 927320C319852DF400AB3E06 /* people-setting.png */; };
 		927320C619852DF400AB3E06 /* people-setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 927320C419852DF400AB3E06 /* people-setting@2x.png */; };
+		929EF6AB1986366A00FC6B2D /* MeasurmentResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EF6AA1986366A00FC6B2D /* MeasurmentResult.m */; };
 		92D08FBA19861190002589B9 /* MaxBTDevicesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D08FB919861190002589B9 /* MaxBTDevicesController.m */; };
 		92D08FBC198618A3002589B9 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D08FBB198618A3002589B9 /* ExternalAccessory.framework */; };
 		92D9896E19855D6600A75614 /* weight-scale.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D9896C19855D6600A75614 /* weight-scale.png */; };
@@ -53,6 +54,8 @@
 		927320B919852BD600AB3E06 /* MyWeightTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyWeightTests.m; sourceTree = "<group>"; };
 		927320C319852DF400AB3E06 /* people-setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "people-setting.png"; path = "MyWeight/people-setting.png"; sourceTree = "<group>"; };
 		927320C419852DF400AB3E06 /* people-setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "people-setting@2x.png"; path = "MyWeight/people-setting@2x.png"; sourceTree = "<group>"; };
+		929EF6A91986366A00FC6B2D /* MeasurmentResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasurmentResult.h; sourceTree = "<group>"; };
+		929EF6AA1986366A00FC6B2D /* MeasurmentResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasurmentResult.m; sourceTree = "<group>"; };
 		92D08FB819861190002589B9 /* MaxBTDevicesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaxBTDevicesController.h; sourceTree = "<group>"; };
 		92D08FB919861190002589B9 /* MaxBTDevicesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaxBTDevicesController.m; sourceTree = "<group>"; };
 		92D08FBB198618A3002589B9 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
@@ -132,6 +135,8 @@
 				92D98996198580A900A75614 /* MaxProfileDetailController.m */,
 				92D989981985A42D00A75614 /* MaxDashboardViewController.h */,
 				92D989991985A42D00A75614 /* MaxDashboardViewController.m */,
+				929EF6A91986366A00FC6B2D /* MeasurmentResult.h */,
+				929EF6AA1986366A00FC6B2D /* MeasurmentResult.m */,
 				92D08FB819861190002589B9 /* MaxBTDevicesController.h */,
 				92D08FB919861190002589B9 /* MaxBTDevicesController.m */,
 			);
@@ -302,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92D9898B19857A4500A75614 /* Goal.m in Sources */,
+				929EF6AB1986366A00FC6B2D /* MeasurmentResult.m in Sources */,
 				92D989751985723700A75614 /* MaxProfileTableViewController.m in Sources */,
 				92D9898E19857A4500A75614 /* Measurment.m in Sources */,
 				927320A319852BD600AB3E06 /* AppDelegate.m in Sources */,

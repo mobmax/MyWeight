@@ -10,14 +10,19 @@
 #import <CoreData/CoreData.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "Profile.h"
+#import "MeasurmentResult.h"
 
 @protocol BTDeviceProtocol <NSObject>
 
 - (void)didDiscoveredDevice:(CBPeripheral *)peripheral;
 
+@optional
+
+- (void)measurmentResut:(MeasurmentResult *)result;
+
 @end
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, CBCentralManagerDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, CBCentralManagerDelegate, CBPeripheralDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
@@ -25,6 +30,8 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (readonly, strong, nonatomic) CBCentralManager *manager;
+@property (strong, nonatomic) CBCharacteristic * weightMeasurementChar;
+@property (strong, nonatomic) CBCharacteristic * measurmentControlChar;
 
 @property (strong, nonatomic) Profile* currentProfile;
 @property (assign, nonatomic) id<BTDeviceProtocol>uiDelegate;
@@ -38,6 +45,7 @@
 - (void)stopScan;
 - (BOOL)isLECapableHardware;
 - (NSArray *)retrieveConnectedPrephirals;
+- (void)doMeasurment:(CBPeripheral *)peripheral;
 
 @end
 

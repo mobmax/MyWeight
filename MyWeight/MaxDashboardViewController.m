@@ -48,7 +48,24 @@
         detailVC.profile = profile;
         [self.navigationController pushViewController:detailVC animated:YES];
     }
+    appDelegate.uiDelegate = self;
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    appDelegate.uiDelegate = nil;
+}
+
+- (void)didDiscoveredDevice:(CBPeripheral *)peripheral {
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate doMeasurment:peripheral];
+}
+
+- (void)measurmentResut:(MeasurmentResult *)result {
+    self.resultLabel.text = [result description];
+}
+
 
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
