@@ -8,6 +8,8 @@
 
 #import "MaxProfileDetailController.h"
 #import "AppDelegate.h"
+#import "Device.h"
+#import "MaxBTDevicesController.h"
 
 @interface MaxProfileDetailController ()
 
@@ -28,6 +30,17 @@
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if (appDelegate.currentProfile) {
         self.userName.text = self.profile.userName;
+        self.gender.text = [self.profile.gender stringValue];
+        self.age.text = [self.profile.age stringValue];
+        self.height.text = [self.profile.height stringValue];
+        self.level.text = [self.profile.level stringValue];
+        
+        NSArray* devices = self.profile.devices.allObjects;
+        if ([devices count] > 0) {
+            Device* device = [devices firstObject];
+            self.deviceCell.textLabel.text = device.deviceName;
+            self.deviceCell.detailTextLabel.text = [device.number stringValue];
+        }
     }
 }
 
@@ -43,13 +56,20 @@
     if (appDelegate.currentProfile == nil) {
         [self.navigationItem setHidesBackButton:YES animated:NO];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneEditing)];
+    } else {
+        NSArray* devices = self.profile.devices.allObjects;
+        if ([devices count] > 0) {
+            Device* device = [devices firstObject];
+            self.deviceCell.textLabel.text = device.deviceName;
+            self.deviceCell.detailTextLabel.text = [device.number stringValue];
+        }
     }
 }
 
 
 - (void)doneEditing {
     if ([self.userName.text length] > 0) {
-        self.profile.userName = self.userName.text;
+//        self.profile.userName = self.userName.text;
         AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         appDelegate.currentProfile = self.profile;
         [appDelegate saveProfile];
@@ -61,6 +81,10 @@
     [super viewWillDisappear:animated];
     
     self.profile.userName = self.userName.text;
+    self.profile.gender = [NSNumber numberWithInteger:[self.gender.text integerValue]];
+    self.profile.age = [NSNumber numberWithInteger:[self.age.text integerValue]];
+    self.profile.height = [NSNumber numberWithInteger:[self.height.text integerValue]];
+    self.profile.level = [NSNumber numberWithInteger:[self.level.text integerValue]];
 }
 
 
@@ -98,14 +122,17 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    MaxBTDevicesController *detailVC = [segue destinationViewController];
+    detailVC.profile = self.profile;
 }
-*/
+
 
 @end

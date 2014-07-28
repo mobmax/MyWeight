@@ -51,10 +51,9 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    if (!_ignoreChanges && [self.fetchedResultsController.managedObjectContext hasChanges]) {
-        NSError *error = nil;
-        BOOL success = [self.fetchedResultsController.managedObjectContext save:&error];
-        NSAssert2(success, @"Unhandled error performing save at MaxProfileTableViewController.m, line %d: %@", __LINE__, [error localizedDescription]);
+    if (!_ignoreChanges) {
+        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        [appDelegate saveContext];
     }
     _ignoreChanges = NO;
 }

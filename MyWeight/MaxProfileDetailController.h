@@ -14,5 +14,11 @@
 
 @property (assign, nonatomic) Profile* profile;
 @property (weak, nonatomic) IBOutlet UITextField* userName;
+@property (weak, nonatomic) IBOutlet UITextField* gender;
+@property (weak, nonatomic) IBOutlet UITextField* age;
+@property (weak, nonatomic) IBOutlet UITextField* height;
+@property (weak, nonatomic) IBOutlet UITextField* level;
+
+@property  (weak, nonatomic) IBOutlet UITableViewCell* deviceCell;
 
 @end
