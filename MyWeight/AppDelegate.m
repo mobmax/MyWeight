@@ -13,16 +13,19 @@
 @end
 
 @implementation AppDelegate
-            
+
+@synthesize manager = _manager;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self manager];
     return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    [self stopScan];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -36,6 +39,8 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    if ([self isLECapableHardware])
+        [self startScan];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -43,6 +48,88 @@
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
 }
+
+- (CBCentralManager *)manager{
+    if (_manager == nil) {
+        _manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    }
+    return _manager;
+}
+
+#pragma mark - Start/Stop Scan methods
+/*
+ Request CBCentralManager to scan for health thermometer peripherals using service UUID 0xFFF0
+ */
+- (void)startScan
+{
+    NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:FALSE], CBCentralManagerScanOptionAllowDuplicatesKey, nil];
+    
+    [self.manager scanForPeripheralsWithServices:[NSArray arrayWithObject:[CBUUID UUIDWithString:@"FFF0"]] options:options];
+}
+
+/*
+ Request CBCentralManager to stop scanning for health thermometer peripherals
+ */
+- (void)stopScan
+{
+    [self.manager stopScan];
+}
+
+- (BOOL) isLECapableHardware
+{
+    NSString * state = nil;
+    
+    switch ([self.manager state])
+    {
+        case CBCentralManagerStateUnsupported:
+            state = @"The platform/hardware doesn't support Bluetooth Low Energy.";
+            break;
+        case CBCentralManagerStateUnauthorized:
+            state = @"The app is not authorized to use Bluetooth Low Energy.";
+            break;
+        case CBCentralManagerStatePoweredOff:
+            state = @"Bluetooth is currently powered off.";
+            break;
+        case CBCentralManagerStatePoweredOn:
+            return TRUE;
+        case CBCentralManagerStateUnknown:
+        default:
+            return FALSE;
+            
+    }
+    
+    NSLog(@"Central manager state: %@", state);
+    return FALSE;
+}
+
+- (NSArray *)retrieveConnectedPrephirals {
+   return [self.manager retrieveConnectedPeripheralsWithServices:[NSArray arrayWithObject:[CBUUID UUIDWithString:@"FFF0"]]];
+}
+
+
+#pragma mark - CBManagerDelegate methods
+/*
+ Invoked whenever the central manager's state is updated.
+ */
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central
+{
+    [self isLECapableHardware];
+    
+}
+
+/*
+ Invoked when the central discovers thermometer peripheral while scanning.
+ */
+- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
+{
+    NSLog(@"Did discover peripheral. peripheral: %@ rssi: %@, UUID: %@ advertisementData: %@ ", peripheral, RSSI, peripheral.identifier, advertisementData);
+    
+    if (self.uiDelegate) {
+        [self.uiDelegate performSelector:@selector(didDiscoveredDevice:) withObject:peripheral];
+    }
+}
+
+
 
 #pragma mark - Core Data stack
 

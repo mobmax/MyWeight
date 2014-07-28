@@ -13,7 +13,6 @@
 @interface MaxBTDevicesController ()
 
 @property (strong) NSMutableArray *devices;
-@property (strong) CBCentralManager *manager;
 
 - (IBAction)refreshDevices:(id)sender;
 
@@ -30,21 +29,26 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.devices = [[NSMutableArray alloc] init];
-    self.manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    if([self isLECapableHardware]) {
-        [self startScan];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if([appDelegate isLECapableHardware]) {
+        [appDelegate stopScan];
+        appDelegate.uiDelegate = self;
+        [appDelegate startScan];
+        [self.tableView reloadData];
     }
 }
 
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self stopScan];
-    self.manager = nil;
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate stopScan];
+    appDelegate.uiDelegate = nil;
     self.devices = nil;
 }
 
@@ -55,81 +59,22 @@
 
 
 - (IBAction)refreshDevices:(id)sender {
-    [self stopScan];
-    [self.devices removeAllObjects];
-    [self.tableView reloadData];
-    [self startScan];
-}
-
-
-#pragma mark - Start/Stop Scan methods
-/*
- Request CBCentralManager to scan for health thermometer peripherals using service UUID 0xFFF0
- */
-- (void)startScan
-{
-    NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:FALSE], CBCentralManagerScanOptionAllowDuplicatesKey, nil];
-    
-    [self.manager scanForPeripheralsWithServices:[NSArray arrayWithObject:[CBUUID UUIDWithString:@"FFF0"]] options:options];
-}
-
-/*
- Request CBCentralManager to stop scanning for health thermometer peripherals
- */
-- (void)stopScan
-{
-    [self.manager stopScan];
-}
-
-- (BOOL) isLECapableHardware
-{
-    NSString * state = nil;
-    
-    switch ([self.manager state])
-    {
-        case CBCentralManagerStateUnsupported:
-            state = @"The platform/hardware doesn't support Bluetooth Low Energy.";
-            break;
-        case CBCentralManagerStateUnauthorized:
-            state = @"The app is not authorized to use Bluetooth Low Energy.";
-            break;
-        case CBCentralManagerStatePoweredOff:
-            state = @"Bluetooth is currently powered off.";
-            break;
-        case CBCentralManagerStatePoweredOn:
-            return TRUE;
-        case CBCentralManagerStateUnknown:
-        default:
-            return FALSE;
-            
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if([appDelegate isLECapableHardware]) {
+        [appDelegate stopScan];
+        [self.devices removeAllObjects];
+        [self.tableView reloadData];
+        [appDelegate startScan];
     }
-    
-    NSLog(@"Central manager state: %@", state);
-    return FALSE;
 }
 
+#pragma mark - BTDeviceProtocol
 
-#pragma mark - CBManagerDelegate methods
-/*
- Invoked whenever the central manager's state is updated.
- */
-- (void)centralManagerDidUpdateState:(CBCentralManager *)central
-{
-    [self isLECapableHardware];
-    
-}
-
-/*
- Invoked when the central discovers thermometer peripheral while scanning.
- */
-- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
-{
-    NSLog(@"Did discover peripheral. peripheral: %@ rssi: %@, UUID: %@ advertisementData: %@ ", peripheral, RSSI, peripheral.identifier, advertisementData);
-    
-    if( ![self.devices containsObject:peripheral] )
+- (void)didDiscoveredDevice:(CBPeripheral *)peripheral {
+    if( ![self.devices containsObject:peripheral]) {
         [self.devices addObject:peripheral];
-
-    [self.tableView reloadData];
+        [self.tableView reloadData];
+    }
 }
 
 
@@ -171,48 +116,5 @@
     }
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "CoreBluetooth/CoreBluetooth.h"
+#import "AppDelegate.h"
 #import "Profile.h"
 
-@interface MaxBTDevicesController : UITableViewController <CBCentralManagerDelegate>
+@interface MaxBTDevicesController : UITableViewController <BTDeviceProtocol>
 
 @property (assign, nonatomic) Profile* profile;
 
