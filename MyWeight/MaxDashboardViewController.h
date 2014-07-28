@@ -12,5 +12,9 @@
 @interface MaxDashboardViewController : UITableViewController <BTDeviceProtocol>
 
 @property (weak, nonatomic) IBOutlet UILabel* resultLabel;
+@property (weak, nonatomic) IBOutlet UIButton* saveButton;
+@property (weak, nonatomic) IBOutlet UITableViewCell* chatCell;
+
+- (IBAction)saveMeasurment:(id)sender;
 
 @end

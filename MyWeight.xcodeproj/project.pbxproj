@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9240A5311986CE3200F3B34B /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 9240A52F1986CE3200F3B34B /* iTunesArtwork.png */; };
+		9240A5321986CE3200F3B34B /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9240A5301986CE3200F3B34B /* iTunesArtwork@2x.png */; };
+		9240A53A1986D20400F3B34B /* JBBarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9240A5351986D20400F3B34B /* JBBarChartView.m */; };
+		9240A53B1986D20400F3B34B /* JBChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9240A5371986D20400F3B34B /* JBChartView.m */; };
+		9240A53C1986D20400F3B34B /* JBLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9240A5391986D20400F3B34B /* JBLineChartView.m */; };
+		9240A5431986DFF500F3B34B /* JBChartInformationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9240A53E1986DFF500F3B34B /* JBChartInformationView.m */; };
+		9240A5441986DFF500F3B34B /* JBChartTooltipTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9240A5401986DFF500F3B34B /* JBChartTooltipTipView.m */; };
+		9240A5451986DFF500F3B34B /* JBChartTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9240A5421986DFF500F3B34B /* JBChartTooltipView.m */; };
 		927320A019852BD600AB3E06 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9273209F19852BD600AB3E06 /* main.m */; };
 		927320A319852BD600AB3E06 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 927320A219852BD600AB3E06 /* AppDelegate.m */; };
 		927320A619852BD600AB3E06 /* MyWeight.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 927320A419852BD600AB3E06 /* MyWeight.xcdatamodeld */; };
@@ -41,6 +49,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9240A52F1986CE3200F3B34B /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		9240A5301986CE3200F3B34B /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		9240A5341986D20400F3B34B /* JBBarChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBarChartView.h; sourceTree = "<group>"; };
+		9240A5351986D20400F3B34B /* JBBarChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBarChartView.m; sourceTree = "<group>"; };
+		9240A5361986D20400F3B34B /* JBChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartView.h; sourceTree = "<group>"; };
+		9240A5371986D20400F3B34B /* JBChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartView.m; sourceTree = "<group>"; };
+		9240A5381986D20400F3B34B /* JBLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineChartView.h; sourceTree = "<group>"; };
+		9240A5391986D20400F3B34B /* JBLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineChartView.m; sourceTree = "<group>"; };
+		9240A53D1986DFF500F3B34B /* JBChartInformationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartInformationView.h; sourceTree = "<group>"; };
+		9240A53E1986DFF500F3B34B /* JBChartInformationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartInformationView.m; sourceTree = "<group>"; };
+		9240A53F1986DFF500F3B34B /* JBChartTooltipTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartTooltipTipView.h; sourceTree = "<group>"; };
+		9240A5401986DFF500F3B34B /* JBChartTooltipTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartTooltipTipView.m; sourceTree = "<group>"; };
+		9240A5411986DFF500F3B34B /* JBChartTooltipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartTooltipView.h; sourceTree = "<group>"; };
+		9240A5421986DFF500F3B34B /* JBChartTooltipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartTooltipView.m; sourceTree = "<group>"; };
 		9273209A19852BD600AB3E06 /* MyWeight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWeight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9273209E19852BD600AB3E06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9273209F19852BD600AB3E06 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -99,6 +121,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9240A5331986D20400F3B34B /* JBChatView */ = {
+			isa = PBXGroup;
+			children = (
+				9240A53D1986DFF500F3B34B /* JBChartInformationView.h */,
+				9240A53E1986DFF500F3B34B /* JBChartInformationView.m */,
+				9240A53F1986DFF500F3B34B /* JBChartTooltipTipView.h */,
+				9240A5401986DFF500F3B34B /* JBChartTooltipTipView.m */,
+				9240A5411986DFF500F3B34B /* JBChartTooltipView.h */,
+				9240A5421986DFF500F3B34B /* JBChartTooltipView.m */,
+				9240A5341986D20400F3B34B /* JBBarChartView.h */,
+				9240A5351986D20400F3B34B /* JBBarChartView.m */,
+				9240A5361986D20400F3B34B /* JBChartView.h */,
+				9240A5371986D20400F3B34B /* JBChartView.m */,
+				9240A5381986D20400F3B34B /* JBLineChartView.h */,
+				9240A5391986D20400F3B34B /* JBLineChartView.m */,
+			);
+			path = JBChatView;
+			sourceTree = "<group>";
+		};
 		9273209119852BD600AB3E06 = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +180,7 @@
 				929EF6AA1986366A00FC6B2D /* MeasurmentResult.m */,
 				92D08FB819861190002589B9 /* MaxBTDevicesController.h */,
 				92D08FB919861190002589B9 /* MaxBTDevicesController.m */,
+				9240A5331986D20400F3B34B /* JBChatView */,
 			);
 			path = MyWeight;
 			sourceTree = "<group>";
@@ -173,6 +215,8 @@
 		92D9897019855F5200A75614 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				9240A52F1986CE3200F3B34B /* iTunesArtwork.png */,
+				9240A5301986CE3200F3B34B /* iTunesArtwork@2x.png */,
 				927320C319852DF400AB3E06 /* people-setting.png */,
 				927320C419852DF400AB3E06 /* people-setting@2x.png */,
 				92D9896C19855D6600A75614 /* weight-scale.png */,
@@ -286,6 +330,8 @@
 				927320AC19852BD600AB3E06 /* Main.storyboard in Resources */,
 				927320AE19852BD600AB3E06 /* Images.xcassets in Resources */,
 				92D9896E19855D6600A75614 /* weight-scale.png in Resources */,
+				9240A5321986CE3200F3B34B /* iTunesArtwork@2x.png in Resources */,
+				9240A5311986CE3200F3B34B /* iTunesArtwork.png in Resources */,
 				92D9896F19855D6600A75614 /* weight-scale@2x.png in Resources */,
 				927320C619852DF400AB3E06 /* people-setting@2x.png in Resources */,
 				927320C519852DF400AB3E06 /* people-setting.png in Resources */,
@@ -307,17 +353,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				92D9898B19857A4500A75614 /* Goal.m in Sources */,
+				9240A5451986DFF500F3B34B /* JBChartTooltipView.m in Sources */,
 				929EF6AB1986366A00FC6B2D /* MeasurmentResult.m in Sources */,
+				9240A5431986DFF500F3B34B /* JBChartInformationView.m in Sources */,
 				92D989751985723700A75614 /* MaxProfileTableViewController.m in Sources */,
+				9240A53B1986D20400F3B34B /* JBChartView.m in Sources */,
 				92D9898E19857A4500A75614 /* Measurment.m in Sources */,
 				927320A319852BD600AB3E06 /* AppDelegate.m in Sources */,
 				927320A619852BD600AB3E06 /* MyWeight.xcdatamodeld in Sources */,
+				9240A53A1986D20400F3B34B /* JBBarChartView.m in Sources */,
 				92D98997198580A900A75614 /* MaxProfileDetailController.m in Sources */,
 				92D9899419857A4500A75614 /* Profile.m in Sources */,
+				9240A53C1986D20400F3B34B /* JBLineChartView.m in Sources */,
 				92D9899119857A4500A75614 /* Device.m in Sources */,
 				92D9899A1985A42D00A75614 /* MaxDashboardViewController.m in Sources */,
 				92D08FBA19861190002589B9 /* MaxBTDevicesController.m in Sources */,
 				927320A019852BD600AB3E06 /* main.m in Sources */,
+				9240A5441986DFF500F3B34B /* JBChartTooltipTipView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
