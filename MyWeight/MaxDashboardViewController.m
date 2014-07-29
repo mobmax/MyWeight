@@ -41,7 +41,7 @@ typedef NS_ENUM(NSInteger, JBLineChartLine){
 #define kJBStringLabelNationalAverage localize(@"label.date", @"Date")
 
 // Numerics
-CGFloat const kJBLineChartViewControllerChartHeight = 200.0f;
+CGFloat const kJBLineChartViewControllerChartHeight = 250.0f;
 CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
 CGFloat const kJBLineChartViewControllerChartHeaderHeight = 75.0f;
 CGFloat const kJBLineChartViewControllerChartHeaderPadding = 20.0f;
@@ -76,6 +76,7 @@ NSString * const kJBLineChartViewControllerNavButtonViewKey = @"view";
 // - (NSArray *)largestLineData; // largest collection of fake line data
 
 @property (strong, nonatomic) MeasurmentResult* result;
+@property (strong, nonatomic) NSTimer* progressTimer;
 
 @end
 
@@ -124,7 +125,7 @@ NSString * const kJBLineChartViewControllerNavButtonViewKey = @"view";
             {
                 convertedTouchPoint.x = maxChartX;
             }
-            self.tooltipView.frame = CGRectMake(convertedTouchPoint.x - ceil(self.tooltipView.frame.size.width * 0.5), CGRectGetMaxY(chartView.headerView.frame), self.tooltipView.frame.size.width, self.tooltipView.frame.size.height);
+            self.tooltipView.frame = CGRectMake(convertedTouchPoint.x - ceil(self.tooltipView.frame.size.width * 0.5), CGRectGetMaxY(chartView.headerView.frame) + 40, self.tooltipView.frame.size.width, self.tooltipView.frame.size.height);
             
             CGFloat minTipX = (chartView.frame.origin.x + self.tooltipTipView.frame.size.width);
             if (originalTouchPoint.x < minTipX)
@@ -177,6 +178,20 @@ NSString * const kJBLineChartViewControllerNavButtonViewKey = @"view";
     [self setTooltipVisible:tooltipVisible animated:NO];
 }
 
+#pragma mark - Result
+
+- (void)showResult:(BOOL)notFake {
+    self.weightLabel.text = !notFake ? @"---.-" : [NSString stringWithFormat:@"%.1f", self.result.weight];
+    self.unitLabel.text = @"kg";
+    
+    self.fatLabel.text = !notFake ? @"0%" : [NSString stringWithFormat:@"%.f%%", self.result.fat];
+    self.boneLabel.text = !notFake ? @"0%" : [NSString stringWithFormat:@"%.f%%", self.result.bone];
+    self.musculeLabel.text = !notFake ? @"0%" : [NSString stringWithFormat:@"%.f%%", self.result.muscule];
+    self.waterLabel.text = !notFake ? @"0%" : [NSString stringWithFormat:@"%.f%%", self.result.water];
+    self.viscelarFatLabel.text = !notFake ? @"0" : [NSString stringWithFormat:@"%ld", self.result.visceralFat];
+    self.kcalLabel.text = !notFake ? @"0" : [NSString stringWithFormat:@"%ld", self.result.Kcal];
+}
+
 #pragma mark - Data
 
 - (void)initData
@@ -217,7 +232,7 @@ NSString * const kJBLineChartViewControllerNavButtonViewKey = @"view";
 //    self.chatCell.contentView.backgroundColor = kJBColorLineChartControllerBackground;
     
     self.lineChartView = [[JBLineChartView alloc] init];
-    self.lineChartView.frame = CGRectMake(kJBLineChartViewControllerChartPadding, kJBLineChartViewControllerChartPadding, self.chatCell.contentView.bounds.size.width - (kJBLineChartViewControllerChartPadding * 2), kJBLineChartViewControllerChartHeight);
+    self.lineChartView.frame = CGRectMake(kJBLineChartViewControllerChartPadding, kJBLineChartViewControllerChartPadding + 35, self.chatCell.contentView.bounds.size.width - (kJBLineChartViewControllerChartPadding * 2), kJBLineChartViewControllerChartHeight);
     self.lineChartView.delegate = self;
     self.lineChartView.dataSource = self;
     self.lineChartView.headerPadding = kJBLineChartViewControllerChartHeaderPadding;
@@ -226,7 +241,7 @@ NSString * const kJBLineChartViewControllerNavButtonViewKey = @"view";
     self.lineChartView.headerView = nil;
     self.lineChartView.footerView = nil;
     
-    self.informationView = [[JBChartInformationView alloc] initWithFrame:CGRectMake(kJBLineChartViewControllerChartPadding, CGRectGetMaxY(self.lineChartView.frame) - 50, self.chatCell.contentView.bounds.size.width - (kJBLineChartViewControllerChartPadding * 2), CGRectGetMaxY(self.lineChartView.frame) - 100)];
+    self.informationView = [[JBChartInformationView alloc] initWithFrame:CGRectMake(kJBLineChartViewControllerChartPadding, CGRectGetMaxY(self.lineChartView.frame) - 52, self.chatCell.contentView.bounds.size.width - (kJBLineChartViewControllerChartPadding * 2), CGRectGetMaxY(self.lineChartView.frame) - 195)];
     [self.informationView setValueAndUnitTextColor:[UIColor colorWithWhite:0.1 alpha:0.75]];
     [self.informationView setTitleTextColor:kJBColorLineChartHeader];
     [self.informationView setTextShadowColor:nil];
@@ -250,8 +265,8 @@ NSString * const kJBLineChartViewControllerNavButtonViewKey = @"view";
         self.title = appDelegate.currentProfile.userName;
         [self initData];
         [self.lineChartView reloadData];
-        self.resultLabel.text = @"N/A";
         self.result = nil;
+        [self showResult:NO];
         self.saveButton.enabled = NO;
     } else {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -269,20 +284,41 @@ NSString * const kJBLineChartViewControllerNavButtonViewKey = @"view";
     appDelegate.uiDelegate = nil;
 }
 
+- (void)timerFireMethod:(NSTimer *)timer {
+    self.scaleImg.hidden = !self.scaleImg.hidden;
+}
+
 - (void)didDiscoveredDevice:(CBPeripheral *)peripheral {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.saveButton.enabled = NO;
     self.result = nil;
-    self.resultLabel.text = @"Please wait...";
+    [self showResult:NO];
+    self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(timerFireMethod:) userInfo:nil repeats:YES];
     [appDelegate doMeasurment:peripheral];
 }
 
 - (void)measurmentResut:(MeasurmentResult *)result {
+    [self.progressTimer invalidate];
+    self.progressTimer = nil;
+    self.scaleImg.hidden = NO;
+    
     if (result.isValid) {
         self.saveButton.enabled = YES;
         self.result = result;
+        [self showResult:YES];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Measument Error" message:self.result.description delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     }
-    self.resultLabel.text = [result description];
+}
+
+- (void)didDiconnect {
+    if (self.progressTimer) {
+        [self.progressTimer invalidate];
+        self.progressTimer = nil;
+        self.result = nil;
+    }
+    self.scaleImg.hidden = NO;
 }
 
 - (IBAction)saveMeasurment:(id)sender {
@@ -309,50 +345,6 @@ NSString * const kJBLineChartViewControllerNavButtonViewKey = @"view";
 }
 
 /*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -375,7 +367,6 @@ NSString * const kJBLineChartViewControllerNavButtonViewKey = @"view";
     Measurment* item = [self.chartData objectAtIndex:horizontalIndex];
     NSNumber *valueNumber = item.weight;
     [self.informationView setValueText:[NSString stringWithFormat:@"%.2f", [valueNumber floatValue]] unitText:@"kg"];
-    [self.informationView setTitleText:nil];
     [self.informationView setHidden:NO animated:YES];
     [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];
     
@@ -402,7 +393,10 @@ NSString * const kJBLineChartViewControllerNavButtonViewKey = @"view";
 
 - (NSUInteger)lineChartView:(JBLineChartView *)lineChartView numberOfVerticalValuesAtLineIndex:(NSUInteger)lineIndex
 {
-    return [self.chartData count];
+    NSUInteger number = 0;
+    if (self.chatCell)
+        number = [self.chartData count];
+    return number;
 }
 
 - (UIColor *)lineChartView:(JBLineChartView *)lineChartView colorForLineAtLineIndex:(NSUInteger)lineIndex

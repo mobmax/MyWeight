@@ -19,6 +19,7 @@
 @optional
 
 - (void)measurmentResut:(MeasurmentResult *)result;
+- (void)didDiconnect;
 
 @end
 

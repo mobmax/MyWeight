@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		922EF2891988210000D37475 /* downtrend.png in Resources */ = {isa = PBXBuildFile; fileRef = 922EF2871988210000D37475 /* downtrend.png */; };
+		922EF28A1988210000D37475 /* downtrend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 922EF2881988210000D37475 /* downtrend@2x.png */; };
+		922EF28D1988288C00D37475 /* man-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 922EF28B1988288C00D37475 /* man-7.png */; };
+		922EF28E1988288C00D37475 /* man-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 922EF28C1988288C00D37475 /* man-7@2x.png */; };
+		922EF291198828C300D37475 /* plus-circle-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 922EF28F198828C300D37475 /* plus-circle-7.png */; };
+		922EF292198828C300D37475 /* plus-circle-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 922EF290198828C300D37475 /* plus-circle-7@2x.png */; };
 		9240A5311986CE3200F3B34B /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 9240A52F1986CE3200F3B34B /* iTunesArtwork.png */; };
 		9240A5321986CE3200F3B34B /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9240A5301986CE3200F3B34B /* iTunesArtwork@2x.png */; };
 		9240A53A1986D20400F3B34B /* JBBarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9240A5351986D20400F3B34B /* JBBarChartView.m */; };
@@ -22,10 +28,14 @@
 		927320AE19852BD600AB3E06 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 927320AD19852BD600AB3E06 /* Images.xcassets */; };
 		927320BA19852BD600AB3E06 /* MyWeightTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 927320B919852BD600AB3E06 /* MyWeightTests.m */; };
 		927320C519852DF400AB3E06 /* people-setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 927320C319852DF400AB3E06 /* people-setting.png */; };
-		927320C619852DF400AB3E06 /* people-setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 927320C419852DF400AB3E06 /* people-setting@2x.png */; };
 		929EF6AB1986366A00FC6B2D /* MeasurmentResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EF6AA1986366A00FC6B2D /* MeasurmentResult.m */; };
 		92D08FBA19861190002589B9 /* MaxBTDevicesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D08FB919861190002589B9 /* MaxBTDevicesController.m */; };
 		92D08FBC198618A3002589B9 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D08FBB198618A3002589B9 /* ExternalAccessory.framework */; };
+		92D42BE319882AB20002725C /* people-setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D42BE219882AB20002725C /* people-setting@2x.png */; };
+		92D42BEE19882C010002725C /* tick-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D42BEC19882C010002725C /* tick-7.png */; };
+		92D42BEF19882C010002725C /* tick-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D42BED19882C010002725C /* tick-7@2x.png */; };
+		92D42BF2198833FA0002725C /* tick-7-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D42BF0198833FA0002725C /* tick-7-active.png */; };
+		92D42BF3198833FA0002725C /* tick-7-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D42BF1198833FA0002725C /* tick-7-active@2x.png */; };
 		92D9896E19855D6600A75614 /* weight-scale.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D9896C19855D6600A75614 /* weight-scale.png */; };
 		92D9896F19855D6600A75614 /* weight-scale@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D9896D19855D6600A75614 /* weight-scale@2x.png */; };
 		92D9897219855F9500A75614 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D9897119855F9500A75614 /* CoreBluetooth.framework */; };
@@ -49,6 +59,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		922EF2871988210000D37475 /* downtrend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = downtrend.png; sourceTree = "<group>"; };
+		922EF2881988210000D37475 /* downtrend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "downtrend@2x.png"; sourceTree = "<group>"; };
+		922EF28B1988288C00D37475 /* man-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "man-7.png"; sourceTree = "<group>"; };
+		922EF28C1988288C00D37475 /* man-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "man-7@2x.png"; sourceTree = "<group>"; };
+		922EF28F198828C300D37475 /* plus-circle-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus-circle-7.png"; sourceTree = "<group>"; };
+		922EF290198828C300D37475 /* plus-circle-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus-circle-7@2x.png"; sourceTree = "<group>"; };
 		9240A52F1986CE3200F3B34B /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		9240A5301986CE3200F3B34B /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		9240A5341986D20400F3B34B /* JBBarChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBarChartView.h; sourceTree = "<group>"; };
@@ -74,16 +90,20 @@
 		927320B319852BD600AB3E06 /* MyWeightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyWeightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		927320B819852BD600AB3E06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		927320B919852BD600AB3E06 /* MyWeightTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyWeightTests.m; sourceTree = "<group>"; };
-		927320C319852DF400AB3E06 /* people-setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "people-setting.png"; path = "MyWeight/people-setting.png"; sourceTree = "<group>"; };
-		927320C419852DF400AB3E06 /* people-setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "people-setting@2x.png"; path = "MyWeight/people-setting@2x.png"; sourceTree = "<group>"; };
+		927320C319852DF400AB3E06 /* people-setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "people-setting.png"; sourceTree = "<group>"; };
 		929EF6A91986366A00FC6B2D /* MeasurmentResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasurmentResult.h; sourceTree = "<group>"; };
 		929EF6AA1986366A00FC6B2D /* MeasurmentResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasurmentResult.m; sourceTree = "<group>"; };
 		92D08FB819861190002589B9 /* MaxBTDevicesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaxBTDevicesController.h; sourceTree = "<group>"; };
 		92D08FB919861190002589B9 /* MaxBTDevicesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaxBTDevicesController.m; sourceTree = "<group>"; };
 		92D08FBB198618A3002589B9 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		92D08FBD198618A3002589B9 /* MyWeight.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MyWeight.entitlements; sourceTree = "<group>"; };
-		92D9896C19855D6600A75614 /* weight-scale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "weight-scale.png"; path = "MyWeight/weight-scale.png"; sourceTree = "<group>"; };
-		92D9896D19855D6600A75614 /* weight-scale@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "weight-scale@2x.png"; path = "MyWeight/weight-scale@2x.png"; sourceTree = "<group>"; };
+		92D42BE219882AB20002725C /* people-setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "people-setting@2x.png"; sourceTree = "<group>"; };
+		92D42BEC19882C010002725C /* tick-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick-7.png"; sourceTree = "<group>"; };
+		92D42BED19882C010002725C /* tick-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick-7@2x.png"; sourceTree = "<group>"; };
+		92D42BF0198833FA0002725C /* tick-7-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick-7-active.png"; sourceTree = "<group>"; };
+		92D42BF1198833FA0002725C /* tick-7-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick-7-active@2x.png"; sourceTree = "<group>"; };
+		92D9896C19855D6600A75614 /* weight-scale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weight-scale.png"; sourceTree = "<group>"; };
+		92D9896D19855D6600A75614 /* weight-scale@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weight-scale@2x.png"; sourceTree = "<group>"; };
 		92D9897119855F9500A75614 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		92D989731985723700A75614 /* MaxProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaxProfileTableViewController.h; sourceTree = "<group>"; };
 		92D989741985723700A75614 /* MaxProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaxProfileTableViewController.m; sourceTree = "<group>"; };
@@ -215,14 +235,25 @@
 		92D9897019855F5200A75614 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				9240A52F1986CE3200F3B34B /* iTunesArtwork.png */,
-				9240A5301986CE3200F3B34B /* iTunesArtwork@2x.png */,
+				92D42BF0198833FA0002725C /* tick-7-active.png */,
+				92D42BF1198833FA0002725C /* tick-7-active@2x.png */,
+				92D42BEC19882C010002725C /* tick-7.png */,
+				92D42BED19882C010002725C /* tick-7@2x.png */,
+				92D42BE219882AB20002725C /* people-setting@2x.png */,
 				927320C319852DF400AB3E06 /* people-setting.png */,
-				927320C419852DF400AB3E06 /* people-setting@2x.png */,
 				92D9896C19855D6600A75614 /* weight-scale.png */,
 				92D9896D19855D6600A75614 /* weight-scale@2x.png */,
+				922EF28F198828C300D37475 /* plus-circle-7.png */,
+				922EF290198828C300D37475 /* plus-circle-7@2x.png */,
+				922EF28B1988288C00D37475 /* man-7.png */,
+				922EF28C1988288C00D37475 /* man-7@2x.png */,
+				922EF2871988210000D37475 /* downtrend.png */,
+				922EF2881988210000D37475 /* downtrend@2x.png */,
+				9240A52F1986CE3200F3B34B /* iTunesArtwork.png */,
+				9240A5301986CE3200F3B34B /* iTunesArtwork@2x.png */,
 			);
 			name = Images;
+			path = MyWeight/images;
 			sourceTree = "<group>";
 		};
 		92D989821985795100A75614 /* Data Model */ = {
@@ -292,6 +323,9 @@
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = 5BA2G4MYRZ;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.WAC = {
 								enabled = 1;
 							};
@@ -328,13 +362,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				927320AC19852BD600AB3E06 /* Main.storyboard in Resources */,
+				922EF28D1988288C00D37475 /* man-7.png in Resources */,
 				927320AE19852BD600AB3E06 /* Images.xcassets in Resources */,
+				922EF291198828C300D37475 /* plus-circle-7.png in Resources */,
 				92D9896E19855D6600A75614 /* weight-scale.png in Resources */,
 				9240A5321986CE3200F3B34B /* iTunesArtwork@2x.png in Resources */,
+				922EF2891988210000D37475 /* downtrend.png in Resources */,
 				9240A5311986CE3200F3B34B /* iTunesArtwork.png in Resources */,
+				92D42BE319882AB20002725C /* people-setting@2x.png in Resources */,
+				922EF292198828C300D37475 /* plus-circle-7@2x.png in Resources */,
+				92D42BEF19882C010002725C /* tick-7@2x.png in Resources */,
+				922EF28A1988210000D37475 /* downtrend@2x.png in Resources */,
+				92D42BEE19882C010002725C /* tick-7.png in Resources */,
 				92D9896F19855D6600A75614 /* weight-scale@2x.png in Resources */,
-				927320C619852DF400AB3E06 /* people-setting@2x.png in Resources */,
+				922EF28E1988288C00D37475 /* man-7@2x.png in Resources */,
+				92D42BF3198833FA0002725C /* tick-7-active@2x.png in Resources */,
 				927320C519852DF400AB3E06 /* people-setting.png in Resources */,
+				92D42BF2198833FA0002725C /* tick-7-active.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

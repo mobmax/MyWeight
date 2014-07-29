@@ -11,7 +11,18 @@
 
 @interface MaxDashboardViewController : UITableViewController <BTDeviceProtocol>
 
-@property (weak, nonatomic) IBOutlet UILabel* resultLabel;
+@property (weak, nonatomic) IBOutlet UILabel* weightLabel;
+@property (weak, nonatomic) IBOutlet UILabel* unitLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel* fatLabel;
+@property (weak, nonatomic) IBOutlet UILabel* boneLabel;
+@property (weak, nonatomic) IBOutlet UILabel* musculeLabel;
+@property (weak, nonatomic) IBOutlet UILabel* waterLabel;
+@property (weak, nonatomic) IBOutlet UILabel* viscelarFatLabel;
+@property (weak, nonatomic) IBOutlet UILabel* kcalLabel;
+
+@property (weak, nonatomic) IBOutlet UIImageView* scaleImg;
+
 @property (weak, nonatomic) IBOutlet UIButton* saveButton;
 @property (weak, nonatomic) IBOutlet UITableViewCell* chatCell;
 

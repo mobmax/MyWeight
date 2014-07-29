@@ -135,7 +135,7 @@
 - (void)shutdown {
     char dataToSend[] = {0xFD, 0x35, 0, 0, 0, 0, 0, 0x35};
     
-    [self.testPeripheral writeValue:[NSData dataWithBytes:dataToSend length:sizeof(dataToSend)] forCharacteristic:self.measurmentControlChar type:CBCharacteristicWriteWithoutResponse];
+    [self.testPeripheral writeValue:[NSData dataWithBytes:dataToSend length:sizeof(dataToSend)] forCharacteristic:self.measurmentControlChar type:CBCharacteristicWriteWithResponse];
     
 }
 
@@ -197,6 +197,11 @@
     NSLog(@"Did Disconnect to peripheral: %@ with error = %@", peripheral, [error localizedDescription]);
     [self.testPeripheral setDelegate:nil];
     self.testPeripheral = nil;
+    
+    if ([self.uiDelegate respondsToSelector:@selector(didDiconnect)]) {
+        [self.uiDelegate performSelector:@selector(didDiconnect) withObject:nil];
+    }
+
     [self startScan];
 
 }
@@ -291,7 +296,7 @@
                 [self.uiDelegate performSelector:@selector(measurmentResut:) withObject:result];
             }
             [self shutdown];
-            [self startScan];
+//            [self startScan];
         }
     }
 }
