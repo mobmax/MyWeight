@@ -11,6 +11,8 @@
 #import "AppDelegate.h"
 #import "Measurment.h"
 
+#import "NSDate+TKCategory.h"
+
 #import "JBLineChartView.h"
 #import "JBChartInformationView.h"
 #import "JBChartTooltipView.h"
@@ -22,23 +24,13 @@ typedef NS_ENUM(NSInteger, JBLineChartLine){
     JBLineChartLineCount
 };
 
-#define UIColorFromHex(hex) [UIColor colorWithRed:((float)((hex & 0xFF0000) >> 16))/255.0 green:((float)((hex & 0xFF00) >> 8))/255.0 blue:((float)(hex & 0xFF))/255.0 alpha:1.0]
 
-#pragma mark - Line Chart
-
-#define kJBColorLineChartControllerBackground UIColorFromHex(0xb7e3e4)
-#define kJBColorLineChartBackground UIColorFromHex(0xb7e3e4)
-#define kJBColorLineChartHeader UIColorFromHex(0x1c474e)
-#define kJBColorLineChartHeaderSeparatorColor UIColorFromHex(0x8eb6b7)
-#define kJBColorLineChartDefaultSolidLineColor [UIColor colorWithWhite:1.0 alpha:0.5]
-#define kJBColorLineChartDefaultSolidSelectedLineColor [UIColor colorWithWhite:1.0 alpha:1.0]
-#define kJBColorLineChartDefaultDashedLineColor [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:1.0]
-#define kJBColorLineChartDefaultDashedSelectedLineColor [UIColor colorWithWhite:1.0 alpha:1.0]
-
-#define localize(key, default) NSLocalizedStringWithDefaultValue(key, nil, [NSBundle mainBundle], default, nil)
-
-#define kJBStringLabelMm localize(@"label.kg", @"kg")
-#define kJBStringLabelNationalAverage localize(@"label.date", @"Date")
+typedef NS_ENUM(NSInteger, MaxChartFilters) {
+    MaxChartFilterToday,
+    MaxChartFilterWeek,
+    MaxChartFilterMonth,
+    MaxChartFilterAll
+};
 
 // Numerics
 CGFloat const kJBLineChartViewControllerChartHeight = 250.0f;
@@ -52,8 +44,6 @@ NSInteger const kJBLineChartViewControllerMaxNumChartPoints = 7;
 
 CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
 
-// Strings
-NSString * const kJBLineChartViewControllerNavButtonViewKey = @"view";
 
 @interface MaxDashboardViewController () <JBLineChartViewDelegate, JBLineChartViewDataSource>
 
@@ -68,12 +58,10 @@ NSString * const kJBLineChartViewControllerNavButtonViewKey = @"view";
 @property (nonatomic, strong) JBLineChartView *lineChartView;
 @property (nonatomic, strong) JBChartInformationView *informationView;
 @property (nonatomic, strong) NSArray *chartData;
-// @property (nonatomic, strong) NSArray *daysOfWeek;
-
+@property (nonatomic, assign) MaxChartFilters selectedFilter;
 
 // Helpers
 - (void)initData;
-// - (NSArray *)largestLineData; // largest collection of fake line data
 
 @property (strong, nonatomic) MeasurmentResult* result;
 @property (strong, nonatomic) NSTimer* progressTimer;
@@ -188,8 +176,8 @@ NSString * const kJBLineChartViewControllerNavButtonViewKey = @"view";
     self.boneLabel.text = !notFake ? @"0%" : [NSString stringWithFormat:@"%.f%%", self.result.bone];
     self.musculeLabel.text = !notFake ? @"0%" : [NSString stringWithFormat:@"%.f%%", self.result.muscule];
     self.waterLabel.text = !notFake ? @"0%" : [NSString stringWithFormat:@"%.f%%", self.result.water];
-    self.viscelarFatLabel.text = !notFake ? @"0" : [NSString stringWithFormat:@"%ld", self.result.visceralFat];
-    self.kcalLabel.text = !notFake ? @"0" : [NSString stringWithFormat:@"%ld", self.result.Kcal];
+    self.viscelarFatLabel.text = !notFake ? @"0" : [NSString stringWithFormat:@"%lu", (long)self.result.visceralFat];
+    self.kcalLabel.text = !notFake ? @"0" : [NSString stringWithFormat:@"%lu", (long)self.result.Kcal];
 }
 
 #pragma mark - Data
@@ -203,8 +191,28 @@ NSString * const kJBLineChartViewControllerNavButtonViewKey = @"view";
     [request setEntity:entityDescription];
     
     // Set example predicate and sort orderings...
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"profile == %@", appDelegate.currentProfile];
+    NSPredicate *predicate;
+    
+    switch (self.selectedFilter) {
+        case MaxChartFilterToday:
+            predicate = [NSPredicate predicateWithFormat:@"profile == %@ AND fromDate >= %@ AND fromDate < %@", appDelegate.currentProfile, [NSDate yesterday], [NSDate tomorrow]];
+            break;
+            
+        case MaxChartFilterWeek: {
+            NSDate* from  = [NSDate week];
+            NSDate* to = [NSDate nextWeek];
+            predicate = [NSPredicate predicateWithFormat:@"profile == %@ AND fromDate >= %@ AND fromDate < %@", appDelegate.currentProfile, from, to];
+            break;
+        }
+
+        case MaxChartFilterMonth:
+            predicate = [NSPredicate predicateWithFormat:@"profile == %@ AND fromDate >= %@ AND fromDate < %@", appDelegate.currentProfile, [NSDate month], [NSDate nextMonth]];
+            break;
+            
+        default:
+            predicate = [NSPredicate predicateWithFormat:@"profile == %@", appDelegate.currentProfile];
+            break;
+    }
     [request setPredicate:predicate];
     
     NSArray *sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"fromDate" ascending:YES]];
@@ -216,20 +224,13 @@ NSString * const kJBLineChartViewControllerNavButtonViewKey = @"view";
     _chartData = [NSArray arrayWithArray:array];
 }
 
+#pragma mark - life
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [appDelegate retreiveProfile];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-//    self.chatCell.contentView.backgroundColor = kJBColorLineChartControllerBackground;
     
     self.lineChartView = [[JBLineChartView alloc] init];
     self.lineChartView.frame = CGRectMake(kJBLineChartViewControllerChartPadding, kJBLineChartViewControllerChartPadding + 35, self.chatCell.contentView.bounds.size.width - (kJBLineChartViewControllerChartPadding * 2), kJBLineChartViewControllerChartHeight);
@@ -249,6 +250,9 @@ NSString * const kJBLineChartViewControllerNavButtonViewKey = @"view";
     
     [self.chatCell.contentView addSubview:self.informationView];
     [self.chatCell.contentView addSubview:self.lineChartView];
+    
+    self.selectedFilter = [[NSUserDefaults standardUserDefaults] integerForKey:@"SelectedFilter"];
+    [self.chartFilterSelector setSelectedSegmentIndex:self.selectedFilter];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -288,6 +292,8 @@ NSString * const kJBLineChartViewControllerNavButtonViewKey = @"view";
     self.scaleImg.hidden = !self.scaleImg.hidden;
 }
 
+#pragma mark - BTDeviceProtocol
+
 - (void)didDiscoveredDevice:(CBPeripheral *)peripheral {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.saveButton.enabled = NO;
@@ -321,10 +327,13 @@ NSString * const kJBLineChartViewControllerNavButtonViewKey = @"view";
     self.scaleImg.hidden = NO;
 }
 
+#pragma mark - Actions
+
 - (IBAction)saveMeasurment:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if (appDelegate.currentProfile && self.result) {
-        Measurment* measurment = [NSEntityDescription insertNewObjectForEntityForName:@"Measurment" inManagedObjectContext:appDelegate.managedObjectContext];
+        Measurment* measurment = [NSEntityDescription insertNewObjectForEntityForName:@"Measurment"
+                                                               inManagedObjectContext:appDelegate.managedObjectContext];
         measurment.fromDate = [NSDate date];
         measurment.weight = [NSNumber numberWithFloat:self.result.weight];
         measurment.fat = [NSNumber numberWithFloat:self.result.fat];
@@ -341,6 +350,40 @@ NSString * const kJBLineChartViewControllerNavButtonViewKey = @"view";
         [self.lineChartView reloadData];
 
         self.saveButton.enabled = NO;
+    }
+}
+
+- (IBAction)filterChanged:(id)sender {
+    BOOL changed = NO;
+    switch (self.chartFilterSelector.selectedSegmentIndex) {
+        case 0:
+            self.selectedFilter = MaxChartFilterToday;
+            changed = YES;
+            break;
+            
+        case 1:
+            self.selectedFilter = MaxChartFilterWeek;
+            changed = YES;
+            break;
+            
+        case 2:
+            self.selectedFilter = MaxChartFilterMonth;
+            changed = YES;
+            break;
+
+        case 3:
+            self.selectedFilter = MaxChartFilterAll;
+            changed = YES;
+            break;
+
+        default:
+            break;
+    }
+    if (changed) {
+        [[NSUserDefaults standardUserDefaults] setInteger:self.chartFilterSelector.selectedSegmentIndex
+                                                   forKey:@"SelectedFilter"];
+        [self initData];
+        [self.lineChartView reloadData];
     }
 }
 

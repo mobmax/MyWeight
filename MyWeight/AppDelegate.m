@@ -170,7 +170,7 @@
  */
 - (void)centralManager:(CBCentralManager *)central didRetrievePeripherals:(NSArray *)peripherals
 {
-    NSLog(@"Retrieved peripheral: %lu - %@", [peripherals count], peripherals);
+    NSLog(@"Retrieved peripheral: %lu - %@", (unsigned long)[peripherals count], peripherals);
     
     [self stopScan];
     

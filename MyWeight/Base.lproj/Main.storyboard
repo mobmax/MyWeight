@@ -366,6 +366,9 @@
                                                         <segment title="Month"/>
                                                         <segment title="All"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="filterChanged:" destination="Mg3-Ar-ROp" eventType="valueChanged" id="Twv-P9-XJY"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
@@ -553,6 +556,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="boneLabel" destination="waZ-EO-VXL" id="mjH-Kv-FIe"/>
+                        <outlet property="chartFilterSelector" destination="LAe-wg-PKh" id="Hya-0T-ey4"/>
                         <outlet property="chatCell" destination="duG-ra-Htd" id="95i-ZS-XtV"/>
                         <outlet property="fatLabel" destination="wiJ-Hx-hzE" id="eb7-DF-Yt5"/>
                         <outlet property="kcalLabel" destination="p3r-Nx-QYT" id="GZ7-jm-xTo"/>

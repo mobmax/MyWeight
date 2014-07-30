@@ -45,6 +45,7 @@
 }
 
 - (void)viewDidUnload {
+    [super viewDidUnload];
     self.fetchedResultsController = nil;
 }
 
