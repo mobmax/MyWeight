@@ -48,17 +48,37 @@
 }
 
 + (NSDate*) nextWeek{
-    return [[NSDate date] nextWeekDate];
+    return [[NSDate date] startOfNextWeek];
 }
+
+- (NSDate*) startOfNextWeek {
+    NSDateComponents *comp = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSWeekOfYearCalendarUnit | NSWeekdayCalendarUnit) fromDate:self];
+    comp.weekday = [[NSCalendar currentCalendar] firstWeekday];
+    comp.weekOfYear = comp.weekOfYear + 1;
+    [comp setYearForWeekOfYear:comp.year];
+    NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:comp];
+    return date;
+}
+
 
 - (NSDate*) nextWeekDate {
 	NSDateComponents *comp = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSWeekOfYearCalendarUnit | NSWeekdayCalendarUnit) fromDate:self];
-    comp.weekday = [[NSCalendar currentCalendar] firstWeekday];
+//    comp.weekday = [[NSCalendar currentCalendar] firstWeekday];
     comp.weekOfYear = comp.weekOfYear + 1;
     [comp setYearForWeekOfYear:comp.year];
 	NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:comp];
     return date;
 }
+
+- (NSDate*) prevWeekDate {
+    NSDateComponents *comp = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSWeekOfYearCalendarUnit | NSWeekdayCalendarUnit) fromDate:self];
+    //    comp.weekday = [[NSCalendar currentCalendar] firstWeekday];
+    comp.weekOfYear = comp.weekOfYear + 1;
+    [comp setYearForWeekOfYear:comp.year];
+    NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:comp];
+    return date;
+}
+
 
 - (NSDate *) nextDate {
 	NSDateComponents *comp = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:self];

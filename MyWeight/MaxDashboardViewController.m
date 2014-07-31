@@ -202,14 +202,15 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
             break;
             
         case MaxChartFilterWeek:
-            from  = [NSDate week];
-            to = [NSDate nextWeek];
+            from  = [[NSDate date] prevWeekDate];
+            to = [[NSDate date] nextWeekDate];
             break;
 
-        case MaxChartFilterMonth:
-            from = [NSDate month];
-            to = [NSDate nextMonth];
+        case MaxChartFilterMonth: {
+            from = [[NSDate date] prevMonthDate];
+            to = [[NSDate date] nextMonthDate];
             break;
+        }
             
         default:
             break;
