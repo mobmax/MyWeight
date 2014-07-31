@@ -24,6 +24,7 @@ typedef struct TKDateInformation TKDateInformation;
 + (NSDate *) week;
 + (NSDate *) nextWeek;
 + (NSDate *) nextMonth;
++ (NSDate *) today;
 
 - (NSDate *) nextDate;
 - (NSDate *) monthDate;

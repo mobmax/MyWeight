@@ -192,26 +192,32 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
     
     // Set example predicate and sort orderings...
     NSPredicate *predicate;
+    NSDate* from;
+    NSDate* to;
     
     switch (self.selectedFilter) {
         case MaxChartFilterToday:
-            predicate = [NSPredicate predicateWithFormat:@"profile == %@ AND fromDate >= %@ AND fromDate < %@", appDelegate.currentProfile, [NSDate yesterday], [NSDate tomorrow]];
+            from = [NSDate today];
+            to = [NSDate tomorrow];
             break;
             
-        case MaxChartFilterWeek: {
-            NSDate* from  = [NSDate week];
-            NSDate* to = [NSDate nextWeek];
-            predicate = [NSPredicate predicateWithFormat:@"profile == %@ AND fromDate >= %@ AND fromDate < %@", appDelegate.currentProfile, from, to];
+        case MaxChartFilterWeek:
+            from  = [NSDate week];
+            to = [NSDate nextWeek];
             break;
-        }
 
         case MaxChartFilterMonth:
-            predicate = [NSPredicate predicateWithFormat:@"profile == %@ AND fromDate >= %@ AND fromDate < %@", appDelegate.currentProfile, [NSDate month], [NSDate nextMonth]];
+            from = [NSDate month];
+            to = [NSDate nextMonth];
             break;
             
         default:
-            predicate = [NSPredicate predicateWithFormat:@"profile == %@", appDelegate.currentProfile];
             break;
+    }
+    if (to && from) {
+        predicate = [NSPredicate predicateWithFormat:@"profile == %@ AND fromDate >= %@ AND fromDate < %@", appDelegate.currentProfile, from, to];
+    } else {
+        predicate = [NSPredicate predicateWithFormat:@"profile == %@", appDelegate.currentProfile];
     }
     [request setPredicate:predicate];
     

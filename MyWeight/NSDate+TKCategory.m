@@ -4,15 +4,30 @@
 
 @implementation NSDate (TKCategory)
 
+
++ (NSDate *)today {
+    TKDateInformation inf = [[NSDate date] dateInformation];
+    inf.hour = 0;
+    inf.minute = 0;
+    inf.second = 0;
+    return [NSDate dateFromDateInformation:inf];
+}
+
 + (NSDate*) yesterday{
 	TKDateInformation inf = [[NSDate date] dateInformation];
 	inf.day--;
+    inf.hour = 0;
+    inf.minute = 0;
+    inf.second = 0;
 	return [NSDate dateFromDateInformation:inf];
 }
 
 + (NSDate*) tomorrow{
 	TKDateInformation inf = [[NSDate date] dateInformation];
 	inf.day++;
+    inf.hour = 0;
+    inf.minute = 0;
+    inf.second = 0;
 	return [NSDate dateFromDateInformation:inf];
 }
 
@@ -70,7 +85,7 @@
 + (NSDate*)nextMonth {
     NSDate *day = [NSDate date];
 	NSDateComponents *comp = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit) fromDate:day];
-	[comp setDay:0];
+	[comp setDay:1];
 	[comp setMonth:comp.month+1];
 	return [[NSCalendar currentCalendar] dateFromComponents:comp];
 }
