@@ -193,30 +193,26 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
     // Set example predicate and sort orderings...
     NSPredicate *predicate;
     NSDate* from;
-    NSDate* to;
     
     switch (self.selectedFilter) {
         case MaxChartFilterToday:
             from = [NSDate today];
-            to = [NSDate tomorrow];
             break;
             
         case MaxChartFilterWeek:
-            from  = [[NSDate date] prevWeekDate];
-            to = [[NSDate date] nextWeekDate];
+            from  = [[NSDate date] dateByAddingDays:-7];
             break;
 
         case MaxChartFilterMonth: {
-            from = [[NSDate date] prevMonthDate];
-            to = [[NSDate date] nextMonthDate];
+            from = [[NSDate date] dateByAddingDays:-30];
             break;
         }
             
         default:
             break;
     }
-    if (to && from) {
-        predicate = [NSPredicate predicateWithFormat:@"profile == %@ AND fromDate >= %@ AND fromDate < %@", appDelegate.currentProfile, from, to];
+    if (from) {
+        predicate = [NSPredicate predicateWithFormat:@"profile == %@ AND fromDate >= %@ AND fromDate < %@", appDelegate.currentProfile, from, [NSDate tomorrow]];
     } else {
         predicate = [NSPredicate predicateWithFormat:@"profile == %@", appDelegate.currentProfile];
     }
@@ -311,12 +307,13 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
 }
 
 - (void)measurmentResut:(MeasurmentResult *)result {
-    [self.progressTimer invalidate];
-    self.progressTimer = nil;
+    if (self.progressTimer) {
+        [self.progressTimer invalidate];
+        self.progressTimer = nil;
+    }
     self.scaleImg.hidden = NO;
     
     if (result.isValid) {
-        self.saveButton.enabled = YES;
         self.result = result;
         [self showResult:YES];
     } else {
@@ -330,6 +327,9 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
         [self.progressTimer invalidate];
         self.progressTimer = nil;
         self.result = nil;
+    }
+    if (self.result.isValid) {
+        self.saveButton.enabled = YES;
     }
     self.scaleImg.hidden = NO;
 }

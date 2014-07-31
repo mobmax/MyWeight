@@ -33,8 +33,7 @@ typedef struct TKDateInformation TKDateInformation;
 - (NSDate *) lastOfMonthDate;
 - (NSDate *) startOfNextWeek;
 - (NSDate *) prevWeekDate;
-- (NSDate *) prevMonthDate;
-- (NSDate *) nextMonthDate;
+
 
 - (NSDate*) timelessDate;
 

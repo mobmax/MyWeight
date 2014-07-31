@@ -73,7 +73,7 @@
 - (NSDate*) prevWeekDate {
     NSDateComponents *comp = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSWeekOfYearCalendarUnit | NSWeekdayCalendarUnit) fromDate:self];
     //    comp.weekday = [[NSCalendar currentCalendar] firstWeekday];
-    comp.weekOfYear = comp.weekOfYear + 1;
+    comp.weekOfYear = comp.weekOfYear - 1;
     [comp setYearForWeekOfYear:comp.year];
     NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:comp];
     return date;
