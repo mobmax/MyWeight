@@ -295,6 +295,19 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
     self.scaleImg.hidden = !self.scaleImg.hidden;
 }
 
+- (void)startTimer {
+    if (self.progressTimer == nil) {
+        self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(timerFireMethod:) userInfo:nil repeats:YES];
+    }
+}
+
+- (void)stopTimer {
+    if (self.progressTimer != nil && [self.progressTimer isValid]) {
+        [self.progressTimer invalidate];
+        self.progressTimer = nil;
+    }
+}
+
 #pragma mark - BTDeviceProtocol
 
 - (void)didDiscoveredDevice:(CBPeripheral *)peripheral {
@@ -302,32 +315,27 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
     self.saveButton.enabled = NO;
     self.result = nil;
     [self showResult:NO];
-    self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(timerFireMethod:) userInfo:nil repeats:YES];
+    [self performSelectorOnMainThread:@selector(startTimer) withObject:nil waitUntilDone:YES];
     [appDelegate doMeasurment:peripheral];
 }
 
 - (void)measurmentResut:(MeasurmentResult *)result {
-    if (self.progressTimer) {
-        [self.progressTimer invalidate];
-        self.progressTimer = nil;
-    }
+    [self performSelectorOnMainThread:@selector(stopTimer) withObject:nil waitUntilDone:YES];
     self.scaleImg.hidden = NO;
     
     if (result.isValid) {
         self.result = result;
         [self showResult:YES];
     } else {
+        self.result = nil;
+        [self showResult:NO];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Measument Error" message:self.result.description delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }
 }
 
 - (void)didDiconnect {
-    if (self.progressTimer) {
-        [self.progressTimer invalidate];
-        self.progressTimer = nil;
-        self.result = nil;
-    }
+    [self performSelectorOnMainThread:@selector(stopTimer) withObject:nil waitUntilDone:YES];
     if (self.result.isValid) {
         self.saveButton.enabled = YES;
     }
