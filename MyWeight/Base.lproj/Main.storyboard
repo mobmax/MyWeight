@@ -20,7 +20,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="253" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="User Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jdd-Oy-Dpd">
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jdd-Oy-Dpd">
                                             <rect key="frame" x="15" y="0.0" width="238" height="43"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -281,7 +281,7 @@
             </objects>
             <point key="canvasLocation" x="1627" y="1085"/>
         </scene>
-        <!--Bluetooth Devices-->
+        <!--Bluetooth Scales-->
         <scene sceneID="Ddr-c0-GM5">
             <objects>
                 <tableViewController id="eVv-8a-yFf" customClass="MaxBTDevicesController" sceneMemberID="viewController">
@@ -290,10 +290,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="btDeviceCell" id="Mgf-GP-UIj">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="btDeviceCell" textLabel="My6-CZ-kua" style="IBUITableViewCellStyleDefault" id="Mgf-GP-UIj">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mgf-GP-UIj" id="7rH-oC-Env">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Device Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="My6-CZ-kua">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -302,7 +310,7 @@
                             <outlet property="delegate" destination="eVv-8a-yFf" id="Zgg-1p-owZ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Bluetooth Devices" id="hcu-Mv-vWS">
+                    <navigationItem key="navigationItem" title="Bluetooth Scales" id="hcu-Mv-vWS">
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="snK-9Y-cLl">
                             <connections>
                                 <action selector="refreshDevices:" destination="eVv-8a-yFf" id="ssK-0l-1ON"/>
@@ -337,6 +345,71 @@
             </objects>
             <point key="canvasLocation" x="276" y="1085"/>
         </scene>
+        <!--My Goals-->
+        <scene sceneID="VO2-DH-OE0">
+            <objects>
+                <tableViewController id="Uv0-xR-WCA" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="eVY-bQ-OnZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="goalCell" textLabel="WU1-X8-PkT" detailTextLabel="yaV-oP-5F9" style="IBUITableViewCellStyleValue1" id="EPg-wy-OD1">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EPg-wy-OD1" id="G6C-sl-AqB">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Goal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WU1-X8-PkT">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="5%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yaV-oP-5F9">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="2nY-jv-ofi" kind="push" id="eQv-Tq-bOa"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Uv0-xR-WCA" id="TaR-d3-2tB"/>
+                            <outlet property="delegate" destination="Uv0-xR-WCA" id="fc5-qQ-Qvq"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="My Goals" id="u6z-zx-6kn">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="huu-V6-f4u"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AF6-O7-KLP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1161" y="437"/>
+        </scene>
+        <!--Goal Detail-->
+        <scene sceneID="Moy-im-3Gx">
+            <objects>
+                <viewController id="2nY-jv-ofi" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9pM-73-fdD"/>
+                        <viewControllerLayoutGuide type="bottom" id="E1S-3G-7QZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yAc-jJ-Ykw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Goal Detail" id="eZm-FK-PPY"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iJM-na-PMn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1627" y="437"/>
+        </scene>
         <!--Dashboard-->
         <scene sceneID="cBW-wl-9bE">
             <objects>
@@ -348,7 +421,7 @@
                         <sections>
                             <tableViewSection id="ndZ-8N-ZQ4">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="chatCell" rowHeight="344" id="duG-ra-Htd">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="chartCell" rowHeight="344" id="duG-ra-Htd">
                                         <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="duG-ra-Htd" id="hUJ-27-3c2">
@@ -547,7 +620,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Dashboard" id="7CF-7j-CmR">
-                        <barButtonItem key="leftBarButtonItem" image="downtrend.png" id="ifU-JK-fhN"/>
+                        <barButtonItem key="leftBarButtonItem" image="downtrend.png" id="ifU-JK-fhN">
+                            <connections>
+                                <segue destination="Uv0-xR-WCA" kind="push" id="dLt-tK-iqp"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="people-setting.png" id="0F1-c5-Kds">
                             <connections>
                                 <segue destination="b0a-ya-kgK" kind="push" id="bXa-7c-8ZG"/>
@@ -556,8 +633,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="boneLabel" destination="waZ-EO-VXL" id="mjH-Kv-FIe"/>
+                        <outlet property="chartCell" destination="duG-ra-Htd" id="5ED-6V-VlV"/>
                         <outlet property="chartFilterSelector" destination="LAe-wg-PKh" id="Hya-0T-ey4"/>
-                        <outlet property="chatCell" destination="duG-ra-Htd" id="95i-ZS-XtV"/>
                         <outlet property="fatLabel" destination="wiJ-Hx-hzE" id="eb7-DF-Yt5"/>
                         <outlet property="kcalLabel" destination="p3r-Nx-QYT" id="GZ7-jm-xTo"/>
                         <outlet property="musculeLabel" destination="3Hq-Lf-ADA" id="Yyj-OW-ZSx"/>

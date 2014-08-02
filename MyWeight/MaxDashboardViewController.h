@@ -43,7 +43,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton* saveButton;
 @property (weak, nonatomic) IBOutlet UISegmentedControl* chartFilterSelector;
-@property (weak, nonatomic) IBOutlet UITableViewCell* chatCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell* chartCell;
 
 - (IBAction)saveMeasurment:(id)sender;
 - (IBAction)filterChanged:(id)sender;

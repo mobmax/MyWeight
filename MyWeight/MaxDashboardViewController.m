@@ -32,6 +32,12 @@ typedef NS_ENUM(NSInteger, MaxChartFilters) {
     MaxChartFilterAll
 };
 
+CGFloat const kScreenSizeTreshold = 550.0f;
+CGFloat const kFirstCellSizeBig = 344.0f;
+CGFloat const kFirstCellSizeSmall = 258.0f;
+CGFloat const kSecondCellSize = 160.0f;
+CGFloat const kSmallSizePadding = 86.0f;
+
 // Numerics
 CGFloat const kJBLineChartViewControllerChartHeight = 250.0f;
 CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
@@ -87,18 +93,18 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
     {
         self.tooltipView = [[JBChartTooltipView alloc] init];
         self.tooltipView.alpha = 0.0;
-        [self.chatCell.contentView addSubview:self.tooltipView];
+        [self.chartCell.contentView addSubview:self.tooltipView];
     }
     
     if (!self.tooltipTipView)
     {
         self.tooltipTipView = [[JBChartTooltipTipView alloc] init];
         self.tooltipTipView.alpha = 0.0;
-        [self.chatCell.contentView addSubview:self.tooltipTipView];
+        [self.chartCell.contentView addSubview:self.tooltipTipView];
     }
     
     dispatch_block_t adjustTooltipPosition = ^{
-        CGPoint originalTouchPoint = [self.chatCell.contentView convertPoint:touchPoint fromView:chartView];
+        CGPoint originalTouchPoint = [self.chartCell.contentView convertPoint:touchPoint fromView:chartView];
         CGPoint convertedTouchPoint = originalTouchPoint; // modified
         JBChartView *chartView = [self chartView];
         if (chartView)
@@ -164,6 +170,18 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
 - (void)setTooltipVisible:(BOOL)tooltipVisible
 {
     [self setTooltipVisible:tooltipVisible animated:NO];
+}
+
+#pragma mark - UITableViewDataSource
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0) {
+        if (self.view.bounds.size.height >= kScreenSizeTreshold)
+            return kFirstCellSizeBig;
+        else
+            return kFirstCellSizeSmall;
+    }
+    return kSecondCellSize;
 }
 
 #pragma mark - Result
@@ -235,8 +253,10 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [appDelegate retreiveProfile];
     
+    CGFloat viewHeight = self.view.bounds.size.height;
+    
     self.lineChartView = [[JBLineChartView alloc] init];
-    self.lineChartView.frame = CGRectMake(kJBLineChartViewControllerChartPadding, kJBLineChartViewControllerChartPadding + 35, self.chatCell.contentView.bounds.size.width - (kJBLineChartViewControllerChartPadding * 2), kJBLineChartViewControllerChartHeight);
+    self.lineChartView.frame = CGRectMake(kJBLineChartViewControllerChartPadding, kJBLineChartViewControllerChartPadding + 35, self.chartCell.contentView.bounds.size.width - (kJBLineChartViewControllerChartPadding * 2), kJBLineChartViewControllerChartHeight - (viewHeight >= kScreenSizeTreshold ? 0 : kSmallSizePadding));
     self.lineChartView.delegate = self;
     self.lineChartView.dataSource = self;
     self.lineChartView.headerPadding = kJBLineChartViewControllerChartHeaderPadding;
@@ -245,14 +265,14 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
     self.lineChartView.headerView = nil;
     self.lineChartView.footerView = nil;
     
-    self.informationView = [[JBChartInformationView alloc] initWithFrame:CGRectMake(kJBLineChartViewControllerChartPadding, CGRectGetMaxY(self.lineChartView.frame) - 52, self.chatCell.contentView.bounds.size.width - (kJBLineChartViewControllerChartPadding * 2), CGRectGetMaxY(self.lineChartView.frame) - 195)];
+    self.informationView = [[JBChartInformationView alloc] initWithFrame:CGRectMake(kJBLineChartViewControllerChartPadding, CGRectGetMaxY(self.lineChartView.frame) - 52, self.chartCell.contentView.bounds.size.width - (kJBLineChartViewControllerChartPadding * 2), CGRectGetMaxY(self.lineChartView.frame) - 195)];
     [self.informationView setValueAndUnitTextColor:[UIColor colorWithWhite:0.1 alpha:0.75]];
     [self.informationView setTitleTextColor:kJBColorLineChartHeader];
     [self.informationView setTextShadowColor:nil];
     [self.informationView setSeparatorColor:kJBColorLineChartHeaderSeparatorColor];
     
-    [self.chatCell.contentView addSubview:self.informationView];
-    [self.chatCell.contentView addSubview:self.lineChartView];
+    [self.chartCell.contentView addSubview:self.informationView];
+    [self.chartCell.contentView addSubview:self.lineChartView];
     
     self.selectedFilter = [[NSUserDefaults standardUserDefaults] integerForKey:@"SelectedFilter"];
     [self.chartFilterSelector setSelectedSegmentIndex:self.selectedFilter];
@@ -452,7 +472,7 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
 - (NSUInteger)lineChartView:(JBLineChartView *)lineChartView numberOfVerticalValuesAtLineIndex:(NSUInteger)lineIndex
 {
     NSUInteger number = 0;
-    if (self.chatCell)
+    if (self.chartCell)
         number = [self.chartData count];
     return number;
 }

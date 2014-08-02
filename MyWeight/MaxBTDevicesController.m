@@ -103,12 +103,17 @@
     CBPeripheral *peripheral = [self.devices objectAtIndex:indexPath.row];
     if (self.profile) {
         NSArray *devices = self.profile.devices.allObjects;
+        NSInteger number = 0;
         for (Device* device in devices) {
-            [self.profile removeDevicesObject:device];
+            if ([device.number integerValue] > number) number = [device.number integerValue] + 1;
+            if ([device.deviceID isEqualToString:[peripheral.identifier description]]) {
+                number = [device.number integerValue];
+                [self.profile removeDevicesObject:device];
+            }
         }
         AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         Device* newDevice = [NSEntityDescription insertNewObjectForEntityForName:@"Device" inManagedObjectContext:appDelegate.managedObjectContext];
-        newDevice.number = [NSNumber numberWithInteger:0];
+        newDevice.number = [NSNumber numberWithInteger:number];
         newDevice.deviceName = peripheral.name;
         newDevice.deviceID = [peripheral.identifier description];
         [self.profile addDevicesObject:newDevice];
