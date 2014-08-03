@@ -56,6 +56,7 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
 @property (nonatomic, strong) JBChartTooltipView *tooltipView;
 @property (nonatomic, strong) JBChartTooltipTipView *tooltipTipView;
 @property (nonatomic, assign) BOOL tooltipVisible;
+@property (nonatomic, assign) BOOL isConnected;
 
 // Settres
 - (void)setTooltipVisible:(BOOL)tooltipVisible animated:(BOOL)animated atTouchPoint:(CGPoint)touchPoint;
@@ -252,6 +253,7 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
     
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [appDelegate retreiveProfile];
+    self.isConnected = NO;
     
     CGFloat viewHeight = self.view.bounds.size.height;
     
@@ -288,6 +290,11 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
     [super viewWillAppear:animated];
     
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (self.isConnected) {
+        NSLog(@"Orphaned connection...");
+        self.isConnected = NO;
+    }
+    
     if (appDelegate.currentProfile) {
         self.title = appDelegate.currentProfile.userName;
         [self initData];
@@ -331,6 +338,9 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
 #pragma mark - BTDeviceProtocol
 
 - (void)didDiscoveredDevice:(CBPeripheral *)peripheral {
+    if (self.isConnected) return;
+    
+    self.isConnected = YES;
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.saveButton.enabled = NO;
     self.result = nil;
@@ -346,6 +356,7 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
     if (result.isValid) {
         self.result = result;
         [self showResult:YES];
+        self.saveButton.enabled = YES;
     } else {
         self.result = nil;
         [self showResult:NO];
@@ -355,10 +366,8 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
 }
 
 - (void)didDiconnect {
+    self.isConnected = NO;
     [self performSelectorOnMainThread:@selector(stopTimer) withObject:nil waitUntilDone:YES];
-    if (self.result.isValid) {
-        self.saveButton.enabled = YES;
-    }
     self.scaleImg.hidden = NO;
 }
 

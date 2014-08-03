@@ -90,15 +90,23 @@
 }
 
 
-
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     Profile* profile = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    if (profile == appDelegate.currentProfile) return NO;
+//    NSLog(@"Current profile %@ and selected profile %@", appDelegate.currentProfile.userName, profile.userName);
+    if ([profile.userName isEqualToString:appDelegate.currentProfile.userName]) {
+//        NSLog(@"Can't delete selected profile");
+        return NO;
+    }
 
     return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
+           editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
 }
 
 // Override to support editing the table view.
