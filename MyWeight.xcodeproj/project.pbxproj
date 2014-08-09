@@ -21,6 +21,7 @@
 		9240A5431986DFF500F3B34B /* JBChartInformationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9240A53E1986DFF500F3B34B /* JBChartInformationView.m */; };
 		9240A5441986DFF500F3B34B /* JBChartTooltipTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9240A5401986DFF500F3B34B /* JBChartTooltipTipView.m */; };
 		9240A5451986DFF500F3B34B /* JBChartTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9240A5421986DFF500F3B34B /* JBChartTooltipView.m */; };
+		9269C61E1994E8B600317A8C /* MaxParameterPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9269C61D1994E8B600317A8C /* MaxParameterPickerView.m */; };
 		927320A019852BD600AB3E06 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9273209F19852BD600AB3E06 /* main.m */; };
 		927320A319852BD600AB3E06 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 927320A219852BD600AB3E06 /* AppDelegate.m */; };
 		927320A619852BD600AB3E06 /* MyWeight.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 927320A419852BD600AB3E06 /* MyWeight.xcdatamodeld */; };
@@ -30,6 +31,7 @@
 		927320C519852DF400AB3E06 /* people-setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 927320C319852DF400AB3E06 /* people-setting.png */; };
 		929EF6AB1986366A00FC6B2D /* MeasurmentResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EF6AA1986366A00FC6B2D /* MeasurmentResult.m */; };
 		92A695101988BB950066E15B /* NSDate+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A6950F1988BB950066E15B /* NSDate+TKCategory.m */; };
+		92B8F60219939AD90086212E /* PKHPickerContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B8F60119939AD90086212E /* PKHPickerContainerView.m */; };
 		92D08FBA19861190002589B9 /* MaxBTDevicesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D08FB919861190002589B9 /* MaxBTDevicesController.m */; };
 		92D08FBC198618A3002589B9 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D08FBB198618A3002589B9 /* ExternalAccessory.framework */; };
 		92D42BE319882AB20002725C /* people-setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D42BE219882AB20002725C /* people-setting@2x.png */; };
@@ -80,6 +82,8 @@
 		9240A5401986DFF500F3B34B /* JBChartTooltipTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartTooltipTipView.m; sourceTree = "<group>"; };
 		9240A5411986DFF500F3B34B /* JBChartTooltipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartTooltipView.h; sourceTree = "<group>"; };
 		9240A5421986DFF500F3B34B /* JBChartTooltipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartTooltipView.m; sourceTree = "<group>"; };
+		9269C61C1994E8B600317A8C /* MaxParameterPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaxParameterPickerView.h; path = MyWeight/MaxParameterPickerView.h; sourceTree = "<group>"; };
+		9269C61D1994E8B600317A8C /* MaxParameterPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaxParameterPickerView.m; path = MyWeight/MaxParameterPickerView.m; sourceTree = "<group>"; };
 		9273209A19852BD600AB3E06 /* MyWeight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWeight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9273209E19852BD600AB3E06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9273209F19852BD600AB3E06 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -96,6 +100,8 @@
 		929EF6AA1986366A00FC6B2D /* MeasurmentResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasurmentResult.m; sourceTree = "<group>"; };
 		92A6950E1988BB950066E15B /* NSDate+TKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+TKCategory.h"; path = "MyWeight/NSDate+TKCategory.h"; sourceTree = "<group>"; };
 		92A6950F1988BB950066E15B /* NSDate+TKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+TKCategory.m"; path = "MyWeight/NSDate+TKCategory.m"; sourceTree = "<group>"; };
+		92B8F60019939AD90086212E /* PKHPickerContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKHPickerContainerView.h; sourceTree = "<group>"; };
+		92B8F60119939AD90086212E /* PKHPickerContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKHPickerContainerView.m; sourceTree = "<group>"; };
 		92D08FB819861190002589B9 /* MaxBTDevicesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaxBTDevicesController.h; sourceTree = "<group>"; };
 		92D08FB919861190002589B9 /* MaxBTDevicesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaxBTDevicesController.m; sourceTree = "<group>"; };
 		92D08FBB198618A3002589B9 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
@@ -239,8 +245,12 @@
 		92A695111988BBB60066E15B /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				92B8F60019939AD90086212E /* PKHPickerContainerView.h */,
+				92B8F60119939AD90086212E /* PKHPickerContainerView.m */,
 				92A6950E1988BB950066E15B /* NSDate+TKCategory.h */,
 				92A6950F1988BB950066E15B /* NSDate+TKCategory.m */,
+				9269C61C1994E8B600317A8C /* MaxParameterPickerView.h */,
+				9269C61D1994E8B600317A8C /* MaxParameterPickerView.m */,
 			);
 			name = Utilities;
 			path = ..;
@@ -412,6 +422,7 @@
 			files = (
 				92D9898B19857A4500A75614 /* Goal.m in Sources */,
 				9240A5451986DFF500F3B34B /* JBChartTooltipView.m in Sources */,
+				92B8F60219939AD90086212E /* PKHPickerContainerView.m in Sources */,
 				929EF6AB1986366A00FC6B2D /* MeasurmentResult.m in Sources */,
 				9240A5431986DFF500F3B34B /* JBChartInformationView.m in Sources */,
 				92D989751985723700A75614 /* MaxProfileTableViewController.m in Sources */,
@@ -427,6 +438,7 @@
 				92D9899119857A4500A75614 /* Device.m in Sources */,
 				92D9899A1985A42D00A75614 /* MaxDashboardViewController.m in Sources */,
 				92D08FBA19861190002589B9 /* MaxBTDevicesController.m in Sources */,
+				9269C61E1994E8B600317A8C /* MaxParameterPickerView.m in Sources */,
 				927320A019852BD600AB3E06 /* main.m in Sources */,
 				9240A5441986DFF500F3B34B /* JBChartTooltipTipView.m in Sources */,
 			);

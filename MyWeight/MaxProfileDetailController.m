@@ -13,6 +13,8 @@
 
 @interface MaxProfileDetailController ()
 
+@property (assign) NSInteger selectedRow;
+
 - (void)doneEditing;
 
 @end
@@ -30,10 +32,21 @@
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if (appDelegate.currentProfile) {
         self.userName.text = self.profile.userName;
-        self.gender.text = [self.profile.gender stringValue];
-        self.age.text = [self.profile.age stringValue];
-        self.height.text = [self.profile.height stringValue];
-        self.level.text = [self.profile.level stringValue];
+        self.genderCell.detailTextLabel.text = [self.profile.gender integerValue] ? @"Male" : @"Female";
+        self.ageCell.detailTextLabel.text = [self.profile.age stringValue];
+        self.heightCell.detailTextLabel.text = [self.profile.height stringValue];
+        switch ([self.profile.level integerValue]) {
+            case 1:
+                self.levelCell.detailTextLabel.text = @"Amateur";
+                break;
+            case 2:
+                self.levelCell.detailTextLabel.text = @"Professional";
+                break;
+                
+            default:
+                self.levelCell.detailTextLabel.text = @"Normal";
+                break;
+        }
         
         NSArray* devices = self.profile.devices.allObjects;
         if ([devices count] > 0) {
@@ -81,10 +94,6 @@
     [super viewWillDisappear:animated];
     
     self.profile.userName = self.userName.text;
-    self.profile.gender = [NSNumber numberWithInteger:[self.gender.text integerValue]];
-    self.profile.age = [NSNumber numberWithInteger:[self.age.text integerValue]];
-    self.profile.height = [NSNumber numberWithInteger:[self.height.text integerValue]];
-    self.profile.level = [NSNumber numberWithInteger:[self.level.text integerValue]];
 }
 
 
@@ -121,6 +130,96 @@
     return YES;
 }
 */
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.row ) {
+        case 1: {
+            self.pickerContainerView = [[MaxParameterPickerView alloc] initWithTitle:@"Gender" min:0 max:0 uints:@[@"Female", @"Male"] forView:self.view.superview];
+            [self.pickerContainerView.pickerView selectRow:[self.profile.gender integerValue] inComponent:0 animated:NO];
+            self.pickerContainerView.pickerDelegate = self;
+            [self.pickerContainerView showPickerContainerView];
+            self.view.userInteractionEnabled = NO;
+            self.selectedRow = indexPath.row;
+            break;
+        }
+        case 2: {
+            self.pickerContainerView = [[MaxParameterPickerView alloc] initWithTitle:@"Age" min:5 max:75 uints:nil forView:self.view.superview];
+            [self.pickerContainerView selectFromInterger:[self.profile.age integerValue] animated:NO];
+            self.pickerContainerView.pickerDelegate = self;
+            [self.pickerContainerView showPickerContainerView];
+            self.selectedRow = indexPath.row;
+            self.view.userInteractionEnabled = NO;
+            break;
+        }
+        case 3: {
+            self.pickerContainerView = [[MaxParameterPickerView alloc] initWithTitle:@"Height" min:50 max:250 uints:@[@"sm", @"in"] forView:self.view.superview];
+            [self.pickerContainerView selectFromInterger:[self.profile.height integerValue] animated:NO];
+            self.pickerContainerView.pickerDelegate = self;
+            [self.pickerContainerView showPickerContainerView];
+            self.selectedRow = indexPath.row;
+            self.view.userInteractionEnabled = NO;
+            break;
+        }
+        case 4: {
+            self.pickerContainerView = [[MaxParameterPickerView alloc] initWithTitle:@"Level" min:0 max:0 uints:@[@"Normal", @"Amateur", @"Professional"] forView:self.view.superview];
+            [self.pickerContainerView.pickerView selectRow:[self.profile.level integerValue] inComponent:0 animated:NO];
+            self.pickerContainerView.pickerDelegate = self;
+            [self.pickerContainerView showPickerContainerView];
+            self.view.userInteractionEnabled = NO;
+            self.selectedRow = indexPath.row;
+            break;
+        }
+
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)onCancel:(MaxParameterPickerView *)pickerView {
+    [pickerView hidePickerContainerView];
+    [self.pickerContainerView removeFromSuperview];
+    self.pickerContainerView = nil;
+    self.view.userInteractionEnabled = YES;
+}
+
+- (void)onDone:(MaxParameterPickerView *)pickerView {
+    switch (self.selectedRow) {
+        case 1: {
+            self.profile.gender = [NSNumber numberWithInteger:[pickerView.pickerView selectedRowInComponent:0]];
+            self.genderCell.detailTextLabel.text = [self.profile.gender integerValue] ? @"Male" : @"Female";
+            break;
+        }
+        case 2: {
+            self.profile.age = [NSNumber numberWithInteger:[pickerView getIntegerValue]];
+            self.ageCell.detailTextLabel.text = [self.profile.age stringValue];
+            break;
+        }
+        case 3: {
+            self.profile.height = [NSNumber numberWithInteger:[pickerView getIntegerValue]];
+            self.heightCell.detailTextLabel.text = [self.profile.height stringValue];
+            break;
+        }
+        case 4: {
+            self.profile.level = [NSNumber numberWithInteger:[pickerView.pickerView selectedRowInComponent:0]];
+            switch ([self.profile.level integerValue]) {
+                case 1:
+                    self.levelCell.detailTextLabel.text = @"Amateur";
+                    break;
+                case 2:
+                    self.levelCell.detailTextLabel.text = @"Professional";
+                    break;
+            
+                default:
+                    self.levelCell.detailTextLabel.text = @"Normal";
+                    break;
+            }
+            break;
+        }
+    }
+    [pickerView hidePickerContainerView];
+    [self.pickerContainerView removeFromSuperview];
+    self.pickerContainerView = nil;
+    self.view.userInteractionEnabled = YES;
+}
 
 
 #pragma mark - Navigation
