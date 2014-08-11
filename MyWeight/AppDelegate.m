@@ -394,6 +394,13 @@
     return _managedObjectContext;
 }
 
+- (void)setSelectedUnits:(MaxUnits)selectedUnits {
+    _selectedUnits = selectedUnits;
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:_selectedUnits forKey:@"SelectedUnits"];
+    [defaults synchronize];
+}
+
 #pragma mark - Core Data Saving support
 
 - (void)saveContext {
@@ -412,6 +419,7 @@
 - (void)retreiveProfile {
     if (self.currentProfile == nil) {
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        self.selectedUnits = [defaults integerForKey:@"SelectedUnits"];
         NSString* profileString = [defaults objectForKey:@"SelectedProfile"];
         
        if (profileString) {

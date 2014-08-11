@@ -47,5 +47,6 @@
 
 - (IBAction)saveMeasurment:(id)sender;
 - (IBAction)filterChanged:(id)sender;
+- (IBAction)changeUnits:(id)sender;
 
 @end

@@ -12,6 +12,11 @@
 #import "Profile.h"
 #import "MeasurmentResult.h"
 
+typedef NS_ENUM(NSInteger, MaxUnits){
+    Metric,
+    Imperial
+};
+
 @protocol BTDeviceProtocol <NSObject>
 
 - (void)didDiscoveredDevice:(CBPeripheral *)peripheral;
@@ -33,6 +38,8 @@
 @property (readonly, strong, nonatomic) CBCentralManager *manager;
 @property (strong, nonatomic) CBCharacteristic * weightMeasurementChar;
 @property (strong, nonatomic) CBCharacteristic * measurmentControlChar;
+
+@property (assign, nonatomic) MaxUnits selectedUnits;
 
 @property (strong, nonatomic) Profile* currentProfile;
 @property (assign, nonatomic) id<BTDeviceProtocol>uiDelegate;

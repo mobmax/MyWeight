@@ -8,24 +8,56 @@
 
 #import "MaxParameterPickerView.h"
 
+#define kSelfHeight 260
+#define kSelfWidth 320
+
+
+#define kSHOW_OFFSCREEN CGRectMake(0, ([UIScreen mainScreen].bounds.size.height+1), kSelfWidth, kSelfHeight);
+#define kSHOW_ONSCREEN CGRectMake(0, (self.parentView.bounds.size.height-kSelfHeight), kSelfWidth, kSelfHeight);
+
+
 @interface MaxParameterPickerView ()
 
 @property (assign) Float32 minValue;
 @property (assign) Float32 maxValue;
 @property (strong, nonatomic) NSArray* units;
 
+@property (nonatomic) UIView *parentView;
+
 @end
 
 
 @implementation MaxParameterPickerView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+
+- (id)initWithinView:(UIView *)view {
+    if (self = [super init]) {
+        
+        self.parentView = [[UIView alloc] init];
+        self.parentView = view;
+        self.backgroundColor = [UIColor whiteColor];
+        
+        self.frame = kSHOW_OFFSCREEN;
+        
+        self.toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, kSelfWidth, 44)];
+        
+        if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) { // for iOS 7 and above
+            [self.toolbar setTintColor:[UIColor whiteColor]];
+            [self.toolbar setBarTintColor:[UIColor blackColor]];
+        } else {
+            [self.toolbar setBarStyle:UIBarStyleBlack];
+        }
+        
+        self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 44, kSelfWidth, 216)];
+        self.pickerView.showsSelectionIndicator = YES;
+        
+        [self addSubview:self.toolbar];
+        [self addSubview:self.pickerView];
+    }
+    
+    return self;
 }
-*/
+
 
 - (instancetype)initWithTitle:(NSString *)title min:(Float32)min max:(Float32)max uints:(NSArray *)units forView:(UIView *)view {
     self = [self initWithinView:view];
@@ -54,6 +86,34 @@
     return self;
 }
 
+#pragma mark - Show/hide view
+
+- (void)showPickerContainerView {
+    
+    [UIView animateWithDuration:0.333 animations:^ {
+        self.frame = kSHOW_ONSCREEN
+    }];
+    
+}
+
+
+- (void)hidePickerContainerView {
+    
+    [UIView animateWithDuration:0.333 animations:^ {
+        self.frame = kSHOW_OFFSCREEN;
+    }];
+    
+}
+
+#pragma mark -
+
+- (void)setToolbarItems:(NSArray *)toolbarItems {
+    self.toolbar.items = nil;
+    self.toolbar.items = toolbarItems;
+}
+
+#pragma mark - UIPickerViewDataSource
+
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     if (self.minValue == self.maxValue) {
         return 1;
@@ -79,6 +139,8 @@
     return [[maxString substringWithRange:NSMakeRange(component, 1)] integerValue] - [[minString substringWithRange:NSMakeRange(component, 1)] integerValue] + 1;
 }
 
+#pragma mark - UIPickreViewDelegate
+
 - (NSString *)pickerView:(UIPickerView *)pickerView
              titleForRow:(NSInteger)row
             forComponent:(NSInteger)component {
@@ -92,6 +154,8 @@
     return [NSString stringWithFormat:@"%ld", row];
 }
 
+#pragma mark - Actions
+
 - (IBAction)doneButtonAction:(id)sender {
     if (self.pickerDelegate) {
         [self.pickerDelegate onDone:self];
@@ -103,6 +167,8 @@
         [self.pickerDelegate onCancel:self];
     }
 }
+
+#pragma mark - Public methods
 
 - (void)selectFromInterger:(NSInteger)value animated:(BOOL)animated {
     int numComponents =  (int)(self.units ? self.pickerView.numberOfComponents - 1 : self.pickerView.numberOfComponents);

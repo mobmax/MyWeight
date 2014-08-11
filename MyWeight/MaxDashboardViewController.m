@@ -189,7 +189,13 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
 
 - (void)showResult:(BOOL)notFake {
     self.weightLabel.text = !notFake ? @"---.-" : [NSString stringWithFormat:@"%.1f", self.result.weight];
-    self.unitLabel.text = @"kg";
+//    self.unitLabel.text = @"kg";
+    AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    if (appDelegate.selectedUnits == Metric) {
+        self.unitLabel.text = @"kg";
+    } else {
+        self.unitLabel.text = @"lbs";
+    }
     
     self.fatLabel.text = !notFake ? @"0%" : [NSString stringWithFormat:@"%.f%%", self.result.fat];
     self.boneLabel.text = !notFake ? @"0%" : [NSString stringWithFormat:@"%.f%%", self.result.bone];
@@ -430,6 +436,18 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
         [self.lineChartView reloadData];
     }
 }
+
+- (IBAction)changeUnits:(id)sender {
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    if ([self.unitLabel.text isEqualToString:@"kg"]) {
+        self.unitLabel.text = @"lbs";
+        appDelegate.selectedUnits = Imperial;
+    } else {
+        self.unitLabel.text = @"kg";
+        appDelegate.selectedUnits = Metric;
+    }
+}
+
 
 /*
 #pragma mark - Navigation

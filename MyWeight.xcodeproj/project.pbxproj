@@ -31,7 +31,6 @@
 		927320C519852DF400AB3E06 /* people-setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 927320C319852DF400AB3E06 /* people-setting.png */; };
 		929EF6AB1986366A00FC6B2D /* MeasurmentResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 929EF6AA1986366A00FC6B2D /* MeasurmentResult.m */; };
 		92A695101988BB950066E15B /* NSDate+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A6950F1988BB950066E15B /* NSDate+TKCategory.m */; };
-		92B8F60219939AD90086212E /* PKHPickerContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B8F60119939AD90086212E /* PKHPickerContainerView.m */; };
 		92D08FBA19861190002589B9 /* MaxBTDevicesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D08FB919861190002589B9 /* MaxBTDevicesController.m */; };
 		92D08FBC198618A3002589B9 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D08FBB198618A3002589B9 /* ExternalAccessory.framework */; };
 		92D42BE319882AB20002725C /* people-setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D42BE219882AB20002725C /* people-setting@2x.png */; };
@@ -100,8 +99,6 @@
 		929EF6AA1986366A00FC6B2D /* MeasurmentResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasurmentResult.m; sourceTree = "<group>"; };
 		92A6950E1988BB950066E15B /* NSDate+TKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+TKCategory.h"; path = "MyWeight/NSDate+TKCategory.h"; sourceTree = "<group>"; };
 		92A6950F1988BB950066E15B /* NSDate+TKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+TKCategory.m"; path = "MyWeight/NSDate+TKCategory.m"; sourceTree = "<group>"; };
-		92B8F60019939AD90086212E /* PKHPickerContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKHPickerContainerView.h; sourceTree = "<group>"; };
-		92B8F60119939AD90086212E /* PKHPickerContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKHPickerContainerView.m; sourceTree = "<group>"; };
 		92D08FB819861190002589B9 /* MaxBTDevicesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaxBTDevicesController.h; sourceTree = "<group>"; };
 		92D08FB919861190002589B9 /* MaxBTDevicesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaxBTDevicesController.m; sourceTree = "<group>"; };
 		92D08FBB198618A3002589B9 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
@@ -245,8 +242,6 @@
 		92A695111988BBB60066E15B /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				92B8F60019939AD90086212E /* PKHPickerContainerView.h */,
-				92B8F60119939AD90086212E /* PKHPickerContainerView.m */,
 				92A6950E1988BB950066E15B /* NSDate+TKCategory.h */,
 				92A6950F1988BB950066E15B /* NSDate+TKCategory.m */,
 				9269C61C1994E8B600317A8C /* MaxParameterPickerView.h */,
@@ -422,7 +417,6 @@
 			files = (
 				92D9898B19857A4500A75614 /* Goal.m in Sources */,
 				9240A5451986DFF500F3B34B /* JBChartTooltipView.m in Sources */,
-				92B8F60219939AD90086212E /* PKHPickerContainerView.m in Sources */,
 				929EF6AB1986366A00FC6B2D /* MeasurmentResult.m in Sources */,
 				9240A5431986DFF500F3B34B /* JBChartInformationView.m in Sources */,
 				92D989751985723700A75614 /* MaxProfileTableViewController.m in Sources */,
@@ -598,6 +592,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = MyWeightTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -613,6 +608,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = MyWeightTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
