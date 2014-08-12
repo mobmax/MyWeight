@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="14A314h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Vdr-OX-Alv">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <scenes>
@@ -622,6 +621,7 @@
                         <outlet property="unitLabel" destination="w1x-M8-N9V" id="4HF-EK-EjZ"/>
                         <outlet property="viscelarFatLabel" destination="eXt-f7-D4t" id="QYV-Mo-Ush"/>
                         <outlet property="waterLabel" destination="FpU-uk-8K6" id="jUj-su-PQK"/>
+                        <outlet property="weightButton" destination="7x0-BL-esQ" id="Wc3-d8-g2J"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VXI-Ht-J07" userLabel="First Responder" sceneMemberID="firstResponder"/>

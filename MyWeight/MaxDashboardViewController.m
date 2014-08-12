@@ -188,7 +188,7 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
 #pragma mark - Result
 
 - (void)showResult:(BOOL)notFake {
-    self.weightLabel.text = !notFake ? @"---.-" : [NSString stringWithFormat:@"%.1f", self.result.weight];
+    self.weightButton.titleLabel.text = !notFake ? @"---.-" : [NSString stringWithFormat:@"%.1f", self.result.weight];
 //    self.unitLabel.text = @"kg";
     AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     if (appDelegate.selectedUnits == Metric) {

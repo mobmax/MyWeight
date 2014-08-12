@@ -29,7 +29,7 @@
 
 @interface MaxDashboardViewController : UITableViewController <BTDeviceProtocol>
 
-@property (weak, nonatomic) IBOutlet UILabel* weightLabel;
+@property (weak, nonatomic) IBOutlet UIButton* weightButton;
 @property (weak, nonatomic) IBOutlet UILabel* unitLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel* fatLabel;
