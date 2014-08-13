@@ -99,7 +99,8 @@
             return TRUE;
         case CBCentralManagerStateUnknown:
         default:
-            return FALSE;
+            state = @"Unknow.";
+            break;
             
     }
     
@@ -146,8 +147,8 @@
  */
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
-    [self isLECapableHardware];
-    
+    if ([self isLECapableHardware])
+        [self startScan];
 }
 
 /*
@@ -291,7 +292,7 @@
         {
             NSLog(@"Got result");
             
-            MeasurmentResult *result = [MeasurmentResult resultWithData:characteristic.value];
+            MeasurmentResult *result = [MeasurmentResult resultWithData:characteristic.value units:self.selectedUnits];
             if ([self.uiDelegate respondsToSelector:@selector(measurmentResut:)]) {
                 [self.uiDelegate performSelector:@selector(measurmentResut:) withObject:result];
             }
@@ -324,7 +325,7 @@
         return;
     }
     
-    [self getWeight:0 gender:[self.currentProfile.gender intValue]  level:[self.currentProfile.level intValue] Height:[self.currentProfile.height intValue] Age:[self.currentProfile.age intValue] unit:1];
+    [self getWeight:0 gender:[self.currentProfile.gender intValue]  level:[self.currentProfile.level intValue] Height:[self.currentProfile.height intValue] Age:[self.currentProfile.age intValue] unit:self.selectedUnits == Metric ? 1 : 0];
     NSLog(@"Updated notification state for characteristic %@ (newState:%@)", characteristic.UUID, [characteristic isNotifying] ? @"Notifying" : @"Not Notifying");
 }
 

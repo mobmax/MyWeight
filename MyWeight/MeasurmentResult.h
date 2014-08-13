@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+
+typedef NS_ENUM(NSInteger, MaxUnits){
+    Metric,
+    Imperial
+};
+
 @interface MeasurmentResult : NSObject
 
 @property (assign) Float32 weight;
@@ -26,6 +32,6 @@
 @property (assign) BOOL isValid;
 @property (copy, nonatomic) NSString* errorDescription;
 
-+ (MeasurmentResult *)resultWithData:(NSData *)data;
++ (MeasurmentResult *)resultWithData:(NSData *)data units:(MaxUnits)units;
 
 @end

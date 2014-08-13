@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="14A314h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Vdr-OX-Alv">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <scenes>
@@ -528,7 +529,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w1x-M8-N9V">
-                                                    <rect key="frame" x="235" y="35" width="30" height="30"/>
+                                                    <rect key="frame" x="235" y="33" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="CSv-Wz-bIX"/>
                                                         <constraint firstAttribute="height" constant="30" id="tTc-no-wuY"/>
@@ -537,16 +538,15 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7x0-BL-esQ">
-                                                    <rect key="frame" x="55" y="0.0" width="210" height="64"/>
+                                                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="7x0-BL-esQ">
+                                                    <rect key="frame" x="55" y="5" width="210" height="64"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="64" id="QNW-PA-bqs"/>
                                                         <constraint firstAttribute="width" constant="210" id="Vqs-du-lmY"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="64"/>
-                                                    <state key="normal" title="---.-">
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="64"/>
+                                                    <state key="normal">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="changeUnits:" destination="Mg3-Ar-ROp" eventType="touchUpInside" id="uEf-o2-1CP"/>
@@ -578,8 +578,8 @@
                                                 <constraint firstItem="4df-ut-FjU" firstAttribute="leading" secondItem="0Fs-Em-Yb2" secondAttribute="leading" constant="14" id="iRK-9x-GZD"/>
                                                 <constraint firstItem="wiJ-Hx-hzE" firstAttribute="leading" secondItem="waZ-EO-VXL" secondAttribute="leading" id="iu7-bK-t0e"/>
                                                 <constraint firstItem="eXt-f7-D4t" firstAttribute="leading" secondItem="FpU-uk-8K6" secondAttribute="leading" id="jhz-Ug-Ey5"/>
-                                                <constraint firstItem="7x0-BL-esQ" firstAttribute="top" secondItem="0Fs-Em-Yb2" secondAttribute="top" id="lqb-m0-6V4"/>
-                                                <constraint firstItem="w1x-M8-N9V" firstAttribute="top" secondItem="0Fs-Em-Yb2" secondAttribute="top" constant="35" id="oBR-ti-fHr"/>
+                                                <constraint firstItem="7x0-BL-esQ" firstAttribute="top" secondItem="0Fs-Em-Yb2" secondAttribute="top" constant="5" id="lqb-m0-6V4"/>
+                                                <constraint firstItem="w1x-M8-N9V" firstAttribute="top" secondItem="0Fs-Em-Yb2" secondAttribute="top" constant="33" id="oBR-ti-fHr"/>
                                                 <constraint firstItem="0jB-Sz-TTl" firstAttribute="leading" secondItem="0Fs-Em-Yb2" secondAttribute="leading" constant="8" id="qae-Zb-g4N"/>
                                                 <constraint firstItem="XfJ-3b-hu1" firstAttribute="top" secondItem="sKd-QC-MWf" secondAttribute="bottom" constant="4" id="qc8-66-Yhh"/>
                                                 <constraint firstItem="Xcx-2o-bKQ" firstAttribute="leading" secondItem="wiJ-Hx-hzE" secondAttribute="trailing" constant="28" id="qob-mR-pJe"/>

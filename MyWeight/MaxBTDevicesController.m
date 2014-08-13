@@ -36,9 +36,9 @@
     
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if([appDelegate isLECapableHardware]) {
-        [appDelegate stopScan];
+//        [appDelegate stopScan];
         appDelegate.uiDelegate = self;
-        [appDelegate startScan];
+//        [appDelegate startScan];
         [self.tableView reloadData];
     }
 }
@@ -47,7 +47,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [appDelegate stopScan];
+//    [appDelegate stopScan];
     appDelegate.uiDelegate = nil;
     self.devices = nil;
 }

@@ -10,7 +10,7 @@
 
 @implementation MeasurmentResult
 
-+ (MeasurmentResult *)resultWithData:(NSData *)data {
++ (MeasurmentResult *)resultWithData:(NSData *)data units:(MaxUnits)units {
     if (data) {
         MeasurmentResult *result = [[MeasurmentResult alloc] init];
         unsigned char *bytes = (unsigned char *)data.bytes;
@@ -33,6 +33,7 @@
         } else if (bytes[0] == 0xCF | bytes[0] == 0xCE |bytes[0] == 0xCB | bytes[0] == 0xCA) {
             result.isValid = YES;
             result.weight = (bytes[5] + bytes[4] * 256) * 0.1;
+            if (units == Imperial) result.weight = result.weight / 2.20462262185;
             result.level = bytes[1] >> 4;
             result.group = bytes[1] & 0xF;
             result.gender = bytes[2] >> 7;

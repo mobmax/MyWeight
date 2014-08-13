@@ -12,11 +12,6 @@
 #import "Profile.h"
 #import "MeasurmentResult.h"
 
-typedef NS_ENUM(NSInteger, MaxUnits){
-    Metric,
-    Imperial
-};
-
 @protocol BTDeviceProtocol <NSObject>
 
 - (void)didDiscoveredDevice:(CBPeripheral *)peripheral;

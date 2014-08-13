@@ -188,15 +188,26 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
 #pragma mark - Result
 
 - (void)showResult:(BOOL)notFake {
-    self.weightButton.titleLabel.text = !notFake ? @"---.-" : [NSString stringWithFormat:@"%.1f", self.result.weight];
-//    self.unitLabel.text = @"kg";
     AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    Float32 fWeight = -1;
     if (appDelegate.selectedUnits == Metric) {
         self.unitLabel.text = @"kg";
+        if (notFake)
+            fWeight = self.result.weight;
     } else {
         self.unitLabel.text = @"lbs";
+        if (notFake)
+            fWeight = self.result.weight * 2.20462262185;
     }
-    
+    NSString *weightString;
+    if (fWeight < 0 || !notFake)
+        weightString = @"---.-";
+    else {
+        weightString = [NSString stringWithFormat:@"%.01f", fWeight];
+        NSLog(@"Weight string: %@", weightString);
+    }
+    [self.weightButton setTitle:weightString forState:UIControlStateNormal];
+       
     self.fatLabel.text = !notFake ? @"0%" : [NSString stringWithFormat:@"%.f%%", self.result.fat];
     self.boneLabel.text = !notFake ? @"0%" : [NSString stringWithFormat:@"%.f%%", self.result.bone];
     self.musculeLabel.text = !notFake ? @"0%" : [NSString stringWithFormat:@"%.f%%", self.result.muscule];
@@ -316,11 +327,15 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
         [self.navigationController pushViewController:detailVC animated:YES];
     }
     appDelegate.uiDelegate = self;
+    
+//    if (appDelegate.isLECapableHardware)
+//        [appDelegate startScan];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//    [appDelegate stopScan];
     appDelegate.uiDelegate = nil;
 }
 
@@ -446,6 +461,7 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
         self.unitLabel.text = @"kg";
         appDelegate.selectedUnits = Metric;
     }
+    [self showResult:self.result.isValid];
 }
 
 
