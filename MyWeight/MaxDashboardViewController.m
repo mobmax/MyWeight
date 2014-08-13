@@ -50,6 +50,8 @@ NSInteger const kJBLineChartViewControllerMaxNumChartPoints = 7;
 
 CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
 
+CGFloat const kKGtoLBS = 2.20462262185;
+
 
 @interface MaxDashboardViewController () <JBLineChartViewDelegate, JBLineChartViewDataSource>
 
@@ -197,7 +199,7 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
     } else {
         self.unitLabel.text = @"lbs";
         if (notFake)
-            fWeight = self.result.weight * 2.20462262185;
+            fWeight = self.result.weight * kKGtoLBS;
     }
     NSString *weightString;
     if (fWeight < 0 || !notFake)
@@ -461,6 +463,7 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
         self.unitLabel.text = @"kg";
         appDelegate.selectedUnits = Metric;
     }
+    [self.lineChartView reloadData];
     [self showResult:self.result.isValid];
 }
 
@@ -479,15 +482,22 @@ CGFloat const kJBBaseChartViewControllerAnimationDuration = 0.25f;
 
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView verticalValueForHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex
 {
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     Measurment* item = [self.chartData objectAtIndex:horizontalIndex];
-    return [item.weight floatValue];
+    if (appDelegate.selectedUnits == Metric)
+        return [item.weight floatValue];
+    else
+        return [item.weight floatValue] * kKGtoLBS;
 }
 
 - (void)lineChartView:(JBLineChartView *)lineChartView didSelectLineAtIndex:(NSUInteger)lineIndex horizontalIndex:(NSUInteger)horizontalIndex touchPoint:(CGPoint)touchPoint
 {
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     Measurment* item = [self.chartData objectAtIndex:horizontalIndex];
     NSNumber *valueNumber = item.weight;
-    [self.informationView setValueText:[NSString stringWithFormat:@"%.2f", [valueNumber floatValue]] unitText:@"kg"];
+    Float32 displayValue = (appDelegate.selectedUnits == Metric) ? [valueNumber floatValue] : [valueNumber floatValue] * kKGtoLBS;
+    [self.informationView setValueText:[NSString stringWithFormat:@"%.2f", displayValue]
+                              unitText:(appDelegate.selectedUnits == Metric) ? @"kg" : @"lbs"];
     [self.informationView setHidden:NO animated:YES];
     [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];
     
